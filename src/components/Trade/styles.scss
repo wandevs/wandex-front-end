@@ -1,0 +1,157 @@
+@import '../../styles/variables.scss';
+
+:global {
+
+.trade {
+    .form-title {
+        color: $black;
+        font-size: 16px;
+    }
+    .list {
+        margin-top: 8px;
+        .item {
+            padding: 2px 0;
+        }
+    }
+    .input-group {
+        display: flex;
+        align-items: center;
+        position: relative;
+        background: $textBox;
+
+        .unit {
+            position: absolute;
+            right: 12px;
+        }
+    }
+
+    .input-group-disable {
+        display: flex;
+        align-items: center;
+        position: relative;
+        background: #1B1C2E;
+
+        .unit {
+            position: absolute;
+            right: 12px;
+        }
+    }
+
+    .form-control{
+        background: $textBox !important;
+        border-radius:2px !important;
+        height:40px !important;
+        border: none !important;
+        color: #ffffff !important;
+    }
+
+    .form-control-disable{
+        background: #1B1C2E !important;
+        border-radius:2px !important;
+        height:45px !important;
+        border: none !important;
+        color: #ffffff !important;
+    }
+
+    .form-control-select{
+        background: $textBox !important;
+        border-radius:2px !important;
+        height:45px !important;
+        border: none !important;
+        color: #ffffff !important;
+        margin-bottom: 20px;
+        width: 311px;
+        margin-top: 10px;
+    }
+
+    .percentButton {
+        height:24px;
+        background:rgba(48,49,71,1);
+        border-radius:12px;
+        top: -10px;
+        font-size: 12px;
+        width: 18.9%;
+        border: none;
+        margin-left: 15px;
+        margin-top: 7px;
+        &:hover {
+            background:linear-gradient(90deg,rgba(65,78,221,1) 0%,rgba(41,48,124,1) 100%);
+        }
+        &:focus {
+            color:white;
+        }
+    }
+
+    .ant-select-selection--single {
+        width: 311px!important;
+        height: 40px!important;
+        padding: 5px!important;
+        background: #303147!important;
+        border: none!important;
+        color: #ffffff!important;
+    }
+
+    .ant-select-arrow {
+        color: #ffffff!important;
+    }
+
+    .selectField {
+        margin-top: 10px;
+        margin-bottom: 20px;
+    }
+
+    .best-buttons {
+        position: absolute;
+        left: 193px;
+    }
+
+    .best-button {
+        width:71px;
+        height:24px;
+        font-size:12px;
+        border-radius: 2px 0px 0px 2px!important;
+        padding: 0px;
+        background:rgba(42,43,64,1);
+        border:0.5px solid rgba(66,68,86,1);
+        &:hover {
+            background:linear-gradient(90deg,rgba(65,78,221,1) 0%,rgba(41,48,124,1) 100%);
+            color:white;
+        }
+
+        &:focus {
+            color:white;
+        }
+    }
+    
+    .best-button-right {
+        @extend .best-button;
+        border-radius: 0px 2px 2px 0px!important;
+        border-left: none;
+    }
+
+    .trade-button {
+        height: 44px;
+        background: linear-gradient(90deg,rgba(65,78,221,1) 0%,rgba(41,48,124,1) 100%);
+        border-radius: 2px;
+        color: white;
+        border:none;
+        margin-bottom: 30px;
+        min-height: 44px;
+
+        &:hover {
+            background:linear-gradient(90deg,rgb(109, 118, 218) 0%,rgb(66, 71, 126) 100%);
+            color:white;
+        }
+    }
+}
+
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+input[type="number"]{
+  -moz-appearance: textfield;
+}
+}

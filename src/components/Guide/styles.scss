@@ -1,0 +1,35 @@
+.img {
+    background-image: url("/guide_img.png");
+    height: 272px;
+    width: auto;
+    border: solid 0.5px gray;
+}
+
+.container {
+    text-align: center;
+    align-items: center;
+}
+
+.closeButton {
+    height: 25px;
+    background: linear-gradient(90deg,rgba(65,78,221,1) 0%,rgba(41,48,124,1) 100%);
+    border-radius: 2px;
+    color: white;
+    border:none;
+    margin: -2px 0px 0px 25px;
+    width: 350px;
+
+    &:hover {
+        background:linear-gradient(90deg,rgb(109, 118, 218) 0%,rgb(66, 71, 126) 100%);
+        color:white;
+    }
+}
+
+.guideInfo {
+    margin: 10px;
+    font-size: 13px;
+}
+
+.textLine {
+    margin: 0px -5px 8px
+}

@@ -1,0 +1,103 @@
+@import '../../styles/variables.scss';
+:global{
+
+
+.orderbook {
+    .header,
+    .status {
+        height: 47px;
+        line-height: 40px;
+    }
+
+    .ask,
+    .bid {
+        min-height: 24px;
+        border-top: 0px;
+        position: relative;
+    }
+
+    .asks,
+    .bids {
+        min-height: 120px;
+        overflow: auto!important;
+    }
+}
+
+.customBid {
+    :hover {
+        // background-color: gray;
+        cursor:crosshair;
+        border-top: 1px dashed #F00;
+    }
+}
+
+.customBidNone {
+    background: $white;
+    :hover {
+        // background-color: gray;
+        cursor:crosshair;
+        border-top: none !important;
+    }
+}
+
+.customAsk {
+    :hover {
+        // background-color: gray;
+        cursor:crosshair;
+        border-bottom: 1px dashed rgb(0, 255, 0);
+    }
+}
+
+.customAskNone {
+    background: $white;
+    :hover {
+        // background-color: gray;
+        cursor:crosshair;
+        border-bottom: none !important;
+    }
+}
+
+.orderbook-amount {
+    font-size:12px;
+    font-family:Helvetica Neue;
+    font-weight:400;
+    color:rgba(255,255,255,1);
+    line-height:15px;
+}
+
+.tipTitle {
+    width: 200px;
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 12px;
+    .subTitle {
+        margin: 3px;
+        width: 90px;
+        display: inline-block;
+        text-align: left;
+    }
+    .subAmount {
+        margin: 3px;
+        width: 90px;
+        display: inline-block;
+        text-align: right;
+    }
+}
+
+.orderbook-progress-red {
+    height: 24px;
+    width: 30px;
+    background: rgba(255, 0, 0, 0.1);
+    position: absolute;
+    border:none;
+}
+
+.orderbook-progress-green {
+    height: 24px;
+    width: 30px;
+    background: rgba(0, 255, 0, 0.1);
+    position: absolute;
+    border:none;
+}
+
+}

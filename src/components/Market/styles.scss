@@ -1,0 +1,17 @@
+@import '../../styles/variables.scss';
+
+.green{
+  color: green
+}
+
+.red{
+  color: red
+}
+
+.ant-table {
+  height: calc(100vh - 220px);
+}
+
+.ant-table-column-title {
+  color: white;
+}

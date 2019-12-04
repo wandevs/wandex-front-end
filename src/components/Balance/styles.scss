@@ -1,0 +1,183 @@
+
+:global {
+    .ant-modal-title {
+        margin: 0px;
+        color: rgba(255, 255, 255, 1);
+        font-weight: bold;
+        font-size: 24px;
+        line-height: 22px;
+        word-wrap: break-word;
+        text-align: center;
+        font-family: "Roboto Condensed";
+    }
+
+    .ant-modal-content {
+        position: relative;
+        background-color: #303147;
+        background-clip: padding-box;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        pointer-events: auto;
+        width: 450px;
+        height: 586px;
+        background: rgba(27,28,46,1);
+        border: 1px solid rgba(27,28,46,1);
+        border-radius: 6px;
+    }
+
+    .ant-modal-header {
+        padding: 24px;
+        color: #FFFFFF;
+        background: none;
+        border-bottom: none;
+        border-radius: 4px 4px 0 0;
+        padding-bottom: 5px;
+    }
+
+    .ant-modal-body {
+        padding: 20px;
+    }
+
+    .anticon {
+        color: white;
+    }
+
+    .ant-switch-checked {
+        background-color: rgb(73, 102, 216)!important;
+    }
+
+    .ant-switch-loading-icon, .ant-switch::after {
+        background-color: rgb(31, 190, 249)!important;
+    }
+
+    .ant-drawer-title {
+        color: white;
+    }
+
+    .ant-drawer-header {
+        border-bottom: none;
+    }
+
+    .ant-input-number-handler {
+        border: none;
+        border-left: none;
+    }
+}
+
+.walletButton {  
+    width : 409px!important;
+    height : 45px!important;
+    background : #303147!important;
+    border-radius : 2px!important;
+}
+
+.totalBalance {
+    margin-top: 20px;
+}
+
+.totalBalanceFont {
+    font-size:28px;
+    font-family:Helvetica Neue;
+    padding-left: 10px;
+    margin-bottom: 20px;
+}
+
+.totalBalanceFontSecond {
+    font-size:14px;
+    font-family:Helvetica Neue;
+    color:rgba(255,255,255,1);
+    line-height:18px;
+    opacity:0.5;
+    padding-top: 5px;
+    text-align: right;
+}
+
+.wrapButtonLeft {
+    height:34px;
+    background:rgba(42,43,64,1);
+    border:1px solid rgba(66,68,86,1);
+    border-radius:2px 0px 0px 2px;
+    font-size:14px;
+    font-family:Helvetica Neue;
+    font-weight:400;
+    color:rgba(255,255,255,1);
+    line-height:15px;
+    margin-bottom: 20px;
+    
+    &:hover {
+        background:linear-gradient(90deg,rgba(65,78,221,1) 0%,rgba(41,48,124,1) 100%);
+        font-weight:bold;
+        opacity:none;
+        color:rgba(255,255,255,1);
+        font-size:14px;
+    }
+    &:focus {
+        color:white;
+        border:1px solid rgba(66,68,86,1);
+    }
+}
+
+.wrapButtonRight {
+    @extend .wrapButtonLeft;
+    border-left: none;
+    border-radius:0px 2px 2px 0px;
+    &:focus {
+        border-left: none;
+    }
+}
+
+.tokensContainer {
+    height: 320px;
+    overflow: auto;
+    // overflow: hidden;
+    position: relative;
+    text-align: center;
+}
+
+.tokenOnePanel {
+    height:50px;
+    background:rgba(42,43,64,1);
+    margin: 5px;
+    padding-top: 3px;
+}
+
+.switchStyle {
+    top: 11px;
+}
+
+.fiatColor {
+    font-size:14px;
+    font-family:Helvetica Neue;
+    font-weight:400;
+    color:rgba(255,255,255,1);
+    line-height:15px;
+    opacity:0.5;
+    margin-top: 4px;
+}
+
+.wanBalance {
+    font-size: 21px;
+}
+
+.wrapInput {
+    margin: 20px;
+    width: 260px;
+    border:none;
+    background: #1B1C2E;
+}
+
+.wrapSendButton {
+    margin:5px;
+    border:1px solid rgb(178, 179, 182);
+    border-radius: 5px;
+    &:hover {
+        background:linear-gradient(90deg,rgba(65,78,221,1) 0%,rgba(41,48,124,1) 100%);
+        font-weight:bold;
+        opacity:none;
+        color:rgba(255,255,255,1);
+        font-size:14px;
+    }
+    &:focus {
+        color:white;
+        border:1px solid rgba(66,68,86,1);
+    }
+}

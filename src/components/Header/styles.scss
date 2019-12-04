@@ -1,0 +1,153 @@
+@import '../../styles/variables.scss';
+
+.Header {
+    :global {
+        .collapsing {
+            -webkit-transition: none;
+            transition: none;
+            display: none;
+        }
+
+        .ant-btn {
+            background-color: #535ec3;
+            border-color: #4954ac;
+            color: #fff !important;
+        }
+
+        .ant-btn:hover,
+        .ant-btn:focus,
+        .ant-btn:active {
+            text-decoration: none;
+            background: #535ec3;
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        :global {
+            .collapse {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: #535ec3;
+                z-index: 1;
+
+                :local(.item) {
+                    margin: 4px 0;
+                    border: none;
+                }
+
+                .HydroSDK-toggleButton {
+                    border: none;
+                }
+            }
+        }
+    }
+
+    @media screen and (min-width: 767px) {
+        :global {
+            .dropdown-toggle::after {
+                margin-left: 12px;
+            }
+
+            .collapse-toggle {
+                display: none;
+            }
+
+            .collapse,
+            .collapse:not(.show) {
+                display: flex;
+
+                :local(.vline) {
+                    margin-top: auto;
+                    margin-bottom: auto;
+                    width: 1px;
+                    height: 17px;
+                    background: #251E46;
+                    // border: 1px solid rgba(66, 68, 86, 1);
+                }
+            }
+
+            .collapse {
+                :local(.item:first-child) {
+                    border-left: none;
+                }
+            }
+        }
+
+        .item {
+            height: 32px;
+            padding: 0 2px;
+            margin: 0px 6px;
+            margin-right: 10px;
+        }
+    }
+
+}
+
+
+/* .HydroSDK-toggleButton {
+   &:hover,
+   &:focus,
+   &:active,
+   &:visited {
+       outline: none;
+       background-color: #535ec3 !important;
+       border-color: #4954ac !important;
+       color: $white !important;
+       box-shadow: none;
+   }
+} */
+
+.headerHeight {
+    height: 80px!important;
+}
+
+.mynav {
+    background-color: transparent;
+    border-color: transparent;
+    color: rgba(255,255,255,0.5);
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    font-family: "Roboto Condensed";
+    height: 30px;
+    font-size: 1rem;
+    border-radius: 4px;
+    padding: 0px 15px;
+
+    &:active,
+    &:hover {
+        background: linear-gradient(90deg, rgba(65, 78, 221, 1) 0%, rgba(41, 48, 124, 1) 100%);
+        color: rgb(255,255,255);
+        font-weight: bold;
+        border: none;
+    }
+
+    :global(.anticon) {
+        vertical-align: middle;
+    }
+}
+
+.menuitem {
+    color: #fff;
+    text-align: center;
+}
+
+.menuitem:hover {
+    color: #3297aa
+}
+
+/* .maintitle {
+    width: 106px;
+    height: 28px;
+    font-size: 28px;
+    text-align: center;
+    font-weight: 400;
+    color: rgba(198, 204, 221, 1);
+} */
+
+.logoimg {
+    width: 90px;
+    height: 40px;
+}

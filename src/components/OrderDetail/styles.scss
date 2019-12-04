@@ -1,0 +1,39 @@
+.container-0 {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.container-1 {
+  height: 50%;
+}
+.container-2 {
+  height: 100%;
+}
+
+.container-1 div{
+  border: 1px #ccc solid;
+}
+//.text-secondary {
+//  //color: #9b9b9b !important;
+//  color: #900;
+//}
+@media screen and (max-width: 768px) {
+  .pair-column {
+    display: none;
+  }
+}
+
+:global {
+  .ant-table {
+    .ant-table-thead > tr > th {
+      color: #9b9b9b;
+    }
+  }
+  .ant-spin-dot-item {
+    background-color: #ccc;
+  }
+  .ant-spin-text {
+    color: #ccc;
+  }
+}
