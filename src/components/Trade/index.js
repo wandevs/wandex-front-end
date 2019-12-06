@@ -119,7 +119,12 @@ class Trade extends React.PureComponent {
     if (orderType === "market" && side === "buy") {
       amountUnit = currentMarket.quoteToken;
       amountDecimals = currentMarket.priceDecimals; 
-    } 
+    }
+
+    let btnName = dexTranslations.Sell;
+    if (side === 'buy') {
+      btnName = dexTranslations.Buy;
+    }
 
     return (
       <>
@@ -258,7 +263,7 @@ class Trade extends React.PureComponent {
                 </div>
               </div>
               <button type="submit" className={`btn trade-button`}>
-                {side?side.toString().toUpperCase():side} {currentMarket.baseToken}
+                {btnName} {currentMarket.baseToken}
               </button>
             </form>
           </div>
