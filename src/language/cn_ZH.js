@@ -69,4 +69,8 @@ export default {
   QuickStartGuide: "快速引导",
   Gotit:"知道",
   History: "历史",
+  Wallet: "钱包",
+  Tokens: "代币",
+  Wrap: "转成wwan",
+  Unwrap: "转回wan",
 }

@@ -3,6 +3,7 @@ import Selector from '../Selector';
 import Tokens from './Tokens';
 import Wrap from './Wrap';
 import './styles.scss';
+import connect from 'react-redux/es/connect/connect';
 
 const OPTIONS = [
   { value: 'tokens', name: 'Tokens' },
@@ -20,10 +21,14 @@ class Wallet extends React.PureComponent {
 
   render() {
     const { selectedAccountID } = this.state;
+    const { dexTranslations } = this.props;
+    OPTIONS[0].name = dexTranslations.Tokens;
+    OPTIONS[1].name = dexTranslations.Wrap;
+    OPTIONS[2].name = dexTranslations.Unwrap;
     return (
       <>
         <div className="title flex justify-content-between align-items-center">
-          <div>Wallet</div>
+          <div>{dexTranslations.Wallet}</div>
           <Selector
             options={OPTIONS}
             selectedValue={selectedAccountID}
@@ -54,4 +59,9 @@ class Wallet extends React.PureComponent {
   }
 }
 
-export default Wallet;
+const mapStateToProps = state => {
+  return {
+    dexTranslations: state.language.get('dexTranslations'),
+  };
+};
+export default connect(mapStateToProps)(Wallet);

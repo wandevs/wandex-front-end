@@ -69,4 +69,8 @@ export default {
   QuickStartGuide: "Quick Start Guide",
   Gotit: "Got it",
   History: "History",
+  Wallet: "Wallet",
+  Tokens: "Tokens",
+  Wrap: "Wrap",
+  Unwrap: "Unwrap",
 }
