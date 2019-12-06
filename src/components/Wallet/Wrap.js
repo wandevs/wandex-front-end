@@ -15,7 +15,7 @@ const mapStateToProps = state => {
   return {
     wanBalance: toUnitAmount(wanBalance, 18),
     wwanBalance: toUnitAmount(wwanBalance, WWAN.decimals),
-    dexTranslations: state.dex.get('dexTranslations')
+    dexTranslations: state.language.get('dexTranslations')
   };
 };
 

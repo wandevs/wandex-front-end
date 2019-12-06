@@ -1,7 +1,7 @@
 import React from 'react';
 import { loginRequest, login } from '../../actions/account';
 import { loadActivity, addActivity } from '../../actions/activity';
-import { setDexTranslations } from '../../actions/dex';
+import { setDexTranslations } from '../../actions/language';
 import { connect } from 'react-redux';
 import { WalletButton, getSelectedAccount } from 'wan-dex-sdk-wallet';
 import style from './styles.scss';
@@ -20,7 +20,7 @@ const mapStateToProps = state => {
     isLoggedIn: state.account.getIn(['isLoggedIn', address]),
     currentMarket: state.market.getIn(['markets', 'currentMarket']),
     markets: state.market.getIn(['markets', 'data']),
-    dexTranslations: state.dex.get('dexTranslations'),
+    dexTranslations: state.language.get('dexTranslations'),
   };
 };
 

@@ -4,14 +4,14 @@ import market from './market';
 import account from './account';
 import config from './config';
 import activity from './activity'
-import dex from './dex'
+import language from './language'
 import { WalletReducer } from 'wan-dex-sdk-wallet';
 
 const rootReducer = combineReducers({
   account,
   activity,
   config,
-  dex,
+  language,
   market,
   form: !!formReducer ? formReducer : {},
   WalletReducer

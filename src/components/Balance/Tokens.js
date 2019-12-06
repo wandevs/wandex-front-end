@@ -18,7 +18,7 @@ const mapStateToProps = state => {
     address,
     wanBalance: toUnitAmount(state.WalletReducer.getIn(['accounts', selectedAccountID, 'balance']), 18),
     markets: state.market.getIn(['markets', 'data']).toArray(),
-    dexTranslations : state.dex.get("dexTranslations"),
+    dexTranslations : state.language.get("dexTranslations"),
   };
 };
 

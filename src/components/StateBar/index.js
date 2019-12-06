@@ -9,7 +9,7 @@ const mapStateToProps = state => {
   return {
     currentMarket: state.market.getIn(['markets', 'currentMarket']),
     markets: state.market.getIn(['markets', 'data']),
-    dexTranslations: state.dex.get("dexTranslations"),
+    dexTranslations: state.language.get("dexTranslations"),
   };
 };
 

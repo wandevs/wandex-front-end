@@ -23,7 +23,7 @@ const mapStateToProps = state => {
     orderLoading: state.account.get('order_loading'),
     otherOrderLoading: state.account.get('other_order_loading'),
     currentMarket: state.market.getIn(['markets', 'currentMarket']),
-    dexTranslations: state.dex.get('dexTranslations'),
+    dexTranslations: state.language.get('dexTranslations'),
   };
 };
 

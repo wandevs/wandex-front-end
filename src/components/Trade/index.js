@@ -69,7 +69,7 @@ const mapStateToProps = state => {
     bestAskPrice: asks.size > 0 ? asks.get(asks.size - 1)[0].toString() : null,
     bids,
     asks,
-    dexTranslations: state.dex.get('dexTranslations'),
+    dexTranslations: state.language.get('dexTranslations'),
   };
 };
 

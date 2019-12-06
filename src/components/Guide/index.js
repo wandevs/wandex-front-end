@@ -35,7 +35,7 @@ class Guide extends React.PureComponent {
 
 const mapStateToProps = state => {
   return {
-    dexTranslations: state.dex.get('dexTranslations'),
+    dexTranslations: state.language.get('dexTranslations'),
   };
 };
 

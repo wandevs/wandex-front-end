@@ -256,7 +256,7 @@ const mapStateToProps = state => {
     currentMarket: state.market.getIn(['markets', 'currentMarket']),
     websocketConnected: state.config.get('websocketConnected'),
     theme: state.config.get('theme'),
-    dexTranslations: state.dex.get('dexTranslations'),
+    dexTranslations: state.language.get('dexTranslations'),
   };
 };
 

@@ -1,5 +1,5 @@
 import { fromJS } from "immutable";
-import { loadTranslations, loadWalletTranslations } from '../actions/dex';
+import { loadTranslations, loadWalletTranslations } from '../actions/language';
 
 export const initState = fromJS({
   dexTranslations: loadTranslations("English"),

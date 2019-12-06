@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { loadMarkets, loadTradeHistory } from './actions/markets';
-import { loadLanguage } from './actions/dex';
+import { loadLanguage } from './actions/language';
 import Header, { activityPagePath, mainPagePath, orderDetailPagePath } from './components/Header';
 import WebsocketConnector from './components/WebsocketConnector';
 import OrderBook from './components/Orderbook';
@@ -27,9 +27,9 @@ const mapStateToProps = state => {
     selectedAccountID,
     currentMarket: state.market.getIn(['markets', 'currentMarket']),
     networkId: state.WalletReducer.getIn(['accounts', selectedAccountID, 'networkId']),
-    dexTranslations : state.dex.get("dexTranslations"),
-    walletTranslations: state.dex.get('walletTranslations'),
-    dexLanguage : state.dex.get("dexLanguage"),
+    dexTranslations : state.language.get("dexTranslations"),
+    walletTranslations: state.language.get('walletTranslations'),
+    dexLanguage : state.language.get("dexLanguage"),
   };
 };
 

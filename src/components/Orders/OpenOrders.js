@@ -11,7 +11,7 @@ const mapStateToProps = state => {
     orders: state.account.get('orders'),
     isLoggedIn: state.account.getIn(['isLoggedIn', address]),
     currentMarket: state.market.getIn(['markets', 'currentMarket']),
-    dexTranslations: state.dex.get('dexTranslations'),
+    dexTranslations: state.language.get('dexTranslations'),
   };
 };
 
