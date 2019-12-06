@@ -192,6 +192,7 @@ class Charts extends React.Component {
   }
 
   render() {
+    const { dexTranslations } = this.props;
     const bids = this.props.bids.toArray().map(priceLevel => {
       return {
         price: priceLevel[0].toString(),
@@ -208,7 +209,7 @@ class Charts extends React.Component {
       <>
         <div className="title flex">
           <div className="titleLogo"/>
-          <div>Charts</div>
+          <div>{dexTranslations.Charts}</div>
         </div>
 
         <div className="flex-column flex-1 ">
@@ -256,7 +257,8 @@ const mapStateToProps = state => {
   return {
     asks: state.market.getIn(['orderbook', 'asks']),
     bids: state.market.getIn(['orderbook', 'bids']),
-    currentMarket: state.market.getIn(['markets', 'currentMarket'])
+    currentMarket: state.market.getIn(['markets', 'currentMarket']),
+    dexTranslations: state.dex.get('dexTranslations'),
   };
 };
 

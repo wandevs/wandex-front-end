@@ -72,7 +72,7 @@ class OrderBook extends React.Component {
   }
 
   renderTipTitle = (price) => {
-    let { bids, asks, currentMarket } = this.props;
+    let { bids, asks, currentMarket, dexTranslations } = this.props;
     let totalAmount = 0;
     let totalPrice = 0;
     if(bids && bids.size > 0) {
@@ -106,11 +106,11 @@ class OrderBook extends React.Component {
 
     return(
       <div className="tipTitle">
-        <div className="subTitle">Average Price:</div>
+        <div className="subTitle">{dexTranslations.AveragePrice}</div>
         <div className="subAmount">{(totalPrice/totalAmount).toFixed(currentMarket.priceDecimals)}</div>
-        <div className="subTitle">Sum {currentMarket.baseToken}: </div>
+        <div className="subTitle">{dexTranslations.Sum} {currentMarket.baseToken}: </div>
         <div className="subAmount">{totalAmount.toFixed(currentMarket.priceDecimals)}</div>
-        <div className="subTitle">Sum {currentMarket.quoteToken}: </div>
+        <div className="subTitle">{dexTranslations.Sum} {currentMarket.quoteToken}: </div>
         <div className="subAmount">{totalPrice.toFixed(currentMarket.priceDecimals)}</div>
       </div>
     )
@@ -137,7 +137,7 @@ class OrderBook extends React.Component {
   }
 
   render() {
-    let { bids, asks, websocketConnected, currentMarket } = this.props;
+    let { bids, asks, websocketConnected, currentMarket, dexTranslations } = this.props;
     let midPrice = 0;
     let midInfo = "";
     let fiatMidPrice = "";
@@ -168,9 +168,9 @@ class OrderBook extends React.Component {
     return (
       <div className="orderbook flex-column flex-1 panelBg">
         <div className="flex header text-secondary">
-          <div className="col-4 text-right">Amount({currentMarket.baseToken})</div>
-          <div className="col-4 text-right">Price({currentMarket.quoteToken})</div>
-          <div className="col-4 text-right">Total({currentMarket.quoteToken})</div>
+          <div className="col-4 text-right">{dexTranslations.Amount}({currentMarket.baseToken})</div>
+          <div className="col-4 text-right">{dexTranslations.Price}({currentMarket.quoteToken})</div>
+          <div className="col-4 text-right">{dexTranslations.Total}({currentMarket.quoteToken})</div>
         </div>
         <div className="flex-column flex-1">
           <div className="asks customBid flex-column flex-column-reverse flex-2 overflow-hidden">
@@ -255,7 +255,8 @@ const mapStateToProps = state => {
     loading: false,
     currentMarket: state.market.getIn(['markets', 'currentMarket']),
     websocketConnected: state.config.get('websocketConnected'),
-    theme: state.config.get('theme')
+    theme: state.config.get('theme'),
+    dexTranslations: state.dex.get('dexTranslations'),
   };
 };
 

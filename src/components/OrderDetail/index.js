@@ -22,7 +22,8 @@ const mapStateToProps = state => {
     isLoggedIn: state.account.getIn(['isLoggedIn', address]),
     orderLoading: state.account.get('order_loading'),
     otherOrderLoading: state.account.get('other_order_loading'),
-    currentMarket: state.market.getIn(['markets', 'currentMarket'])
+    currentMarket: state.market.getIn(['markets', 'currentMarket']),
+    dexTranslations: state.dex.get('dexTranslations'),
   };
 };
 
@@ -64,7 +65,7 @@ class OrderDetail extends React.PureComponent {
     }
   }
   render() {
-    const {orders, otherOrders, currentMarket, orderLoading, otherOrderLoading} = this.props;
+    const {orders, otherOrders, currentMarket, orderLoading, otherOrderLoading, dexTranslations} = this.props;
 
     if (!otherOrders) {
       return null
@@ -72,8 +73,20 @@ class OrderDetail extends React.PureComponent {
 
     return (
       <div className="container-0">
-        <OrdersDetail loading={orderLoading} typeOrders={orders} count={this.props.ordersCount} itemType={1} currentMarket={currentMarket} loadMore={() => this.loadMore(1)}/>
-        <OrdersDetail loading={otherOrderLoading} typeOrders={otherOrders} itemType={2} currentMarket={currentMarket}/>
+        <OrdersDetail loading={orderLoading}
+                      typeOrders={orders}
+                      count={this.props.ordersCount}
+                      itemType={1}
+                      currentMarket={currentMarket}
+                      loadMore={() => this.loadMore(1)}
+                      dexTranslations={ dexTranslations}
+        />
+        <OrdersDetail loading={otherOrderLoading}
+                      typeOrders={otherOrders}
+                      itemType={2}
+                      currentMarket={currentMarket}
+                      dexTranslations={ dexTranslations}
+        />
       </div>
     );
   }

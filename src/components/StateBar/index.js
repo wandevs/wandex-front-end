@@ -8,13 +8,16 @@ import { formatMarket, getFiatSymbol } from '../../lib/utils';
 const mapStateToProps = state => {
   return {
     currentMarket: state.market.getIn(['markets', 'currentMarket']),
-    markets: state.market.getIn(['markets', 'data'])
+    markets: state.market.getIn(['markets', 'data']),
+    dexTranslations: state.dex.get("dexTranslations"),
   };
 };
 
 class StateBar extends React.PureComponent {
   render() {
     const currentMarket = formatMarket(this.props.currentMarket);
+    const { dexTranslations } = this.props;
+
     if(!currentMarket) {return}
     let fiat = getFiatSymbol(this.props.markets);
     console.log("StateBar: %O", currentMarket);
@@ -36,28 +39,28 @@ class StateBar extends React.PureComponent {
                 </Menu>
             )}>
             <Button className={style.stateButton}>
-              Select Market <Icon type="caret-down" />
+              {dexTranslations.SelectMarket} <Icon type="caret-down" />
             </Button>
           </Dropdown>
         </div>
         <div className={style.subitem}>
-          <span style={{color:"gray"}}> Last Price:</span>
+          <span style={{color:"gray"}}> {dexTranslations.LastPric}:</span>
           <span className={style.subText}>{currentMarket.extra.price} ({fiat}{currentMarket.extra.baseFiat})</span>
         </div>
         <div className={style.subitem}>
-          <span style={{color:"gray"}}> 24h Change:</span>
+          <span style={{color:"gray"}}> {dexTranslations.Change24h}:</span>
           <span className={style.subText}>{Number(currentMarket.price24h).toFixed(8)}</span>
         </div>
         <div className={style.subitem}>
-          <span style={{color:"gray"}}> 24h Volume:</span>
+          <span style={{color:"gray"}}> {dexTranslations.Volume24h}:</span>
           <span className={style.subText}>{Number(currentMarket.extra.volume24h).toFixed(6)}</span>
         </div>
         <div className={style.subitem}>
-          <span style={{color:"gray"}}> 24h High:</span>
+          <span style={{color:"gray"}}> {dexTranslations.High24h}:</span>
           <span className={style.subText}>{currentMarket.extra.high24h}</span>
         </div>
         <div className={style.subitem}>
-          <span style={{color:"gray"}}> 24h Low:</span>
+          <span style={{color:"gray"}}> {dexTranslations.Low24h}:</span>
           <span className={style.subText}>{currentMarket.extra.low24h}</span>
         </div>
       </div>

@@ -18,52 +18,52 @@ class OrdersDetail extends React.PureComponent {
 
 
   render() {
-    const { currentMarket } = this.props;
+    const { currentMarket, dexTranslations } = this.props;
     const dataSource = this.props.typeOrders.toArray().map((v) => {
       return v[1];
     });
 
     const columns = [
       {
-        title: 'Submission Date',
+        title: dexTranslations.SubmissionDate,
         dataIndex: 'createdAt',
         render: text => text.split('.')[0].replace('T',' '),
       },
       {
-        title: 'Side',
+        title: dexTranslations.Side,
         dataIndex: 'side',
       },
       {
-        title: 'Status',
+        title: dexTranslations.Status,
         dataIndex: 'status',
       },
       {
-        title: 'Price',
+        title: dexTranslations.Price,
         dataIndex: 'price',
         render: text => text.toFixed(currentMarket.priceDecimals),
       },
       {
-        title: 'Available',
+        title: dexTranslations.Available,
         dataIndex: 'availableAmount',
         render: text => text.toFixed(currentMarket.amountDecimals),
       },
       {
-        title: 'Filled',
+        title: dexTranslations.Filled,
         dataIndex: 'confirmedAmount',
         render: text => text.toFixed(currentMarket.amountDecimals),
       },
       {
-        title: 'Pending',
+        title: dexTranslations.Pending,
         dataIndex: 'pendingAmount',
         render: text => text.toFixed(currentMarket.amountDecimals),
       },
       {
-        title: 'Canceled',
+        title: dexTranslations.Canceled,
         dataIndex: 'canceledAmount',
         render: text => text.toFixed(currentMarket.amountDecimals),
       },
       {
-        title: 'Total',
+        title: dexTranslations.Total,
         dataIndex: 'amount',
         render: text => text.toFixed(currentMarket.amountDecimals),
         // className: "order-detail text-right",
@@ -72,26 +72,26 @@ class OrdersDetail extends React.PureComponent {
 
     const columnSmall = [
       {
-        title: 'Side',
+        title: dexTranslations.Side,
         dataIndex: 'side',
       },
       {
-        title: 'Price',
+        title: dexTranslations.Price,
         dataIndex: 'price',
         render: text => text.toFixed(currentMarket.priceDecimals),
       },
       {
-        title: 'Available',
+        title: dexTranslations.Available,
         dataIndex: 'availableAmount',
         render: text => text.toFixed(currentMarket.amountDecimals),
       },
       {
-        title: 'Filled',
+        title: dexTranslations.Filled,
         dataIndex: 'confirmedAmount',
         render: text => text.toFixed(currentMarket.amountDecimals),
       },
       {
-        title: 'Total',
+        title: dexTranslations.Total,
         dataIndex: 'amount',
         render: text => text.toFixed(currentMarket.amountDecimals),
       },

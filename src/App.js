@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { loadMarkets, loadTradeHistory } from './actions/markets';
+import { loadLanguage } from './actions/dex';
 import Header, { activityPagePath, mainPagePath, orderDetailPagePath } from './components/Header';
 import WebsocketConnector from './components/WebsocketConnector';
 import OrderBook from './components/Orderbook';
@@ -25,12 +26,15 @@ const mapStateToProps = state => {
   return {
     selectedAccountID,
     currentMarket: state.market.getIn(['markets', 'currentMarket']),
-    networkId: state.WalletReducer.getIn(['accounts', selectedAccountID, 'networkId'])
+    networkId: state.WalletReducer.getIn(['accounts', selectedAccountID, 'networkId']),
+    dexTranslations : state.dex.get("dexTranslations"),
+    walletTranslations: state.dex.get('walletTranslations'),
+    dexLanguage : state.dex.get("dexLanguage"),
   };
 };
 
 function alertAntd(info) {
-  if(typeof(info) == "string") {
+  if(typeof(info) === "string") {
     message.success(info, 10);
   } else {
     if (info.toString().includes("Error")) {
@@ -44,14 +48,17 @@ function alertAntd(info) {
 }
 
 class App extends React.PureComponent {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       mobileTab: 'trade',
       currentPath: mainPagePath,
     };
 
     window.alertAntd = alertAntd;
+
+    const { dispatch } = this.props;
+    loadLanguage(dispatch)
   }
 
   componentDidMount() {
@@ -67,9 +74,14 @@ class App extends React.PureComponent {
 
   componentDidUpdate(prevProps) {
     const { currentMarket, dispatch } = this.props;
+
     if (currentMarket !== prevProps.currentMarket) {
       dispatch(loadTradeHistory(currentMarket.id));
     }
+
+    // if (dexLanguage && dexLanguage !== prevProps.dexLanguage) {
+    //   dispatch(setDexTranslations(dexLanguage));
+    // }
   }
 
   async initTestBrowserWallet() {
@@ -103,11 +115,13 @@ class App extends React.PureComponent {
   renderMobile() {
     const selectTab = this.state.mobileTab;
     const currentPath = this.state.currentPath;
+    const { dexTranslations } = this.props;
+
     let content;
     if (selectTab === 'trade' || !selectTab) {
       content = <Trade />;
     } else if (selectTab === 'orders') {
-      content = <Orders />;
+      content = <Orders dexTranslations={dexTranslations} />;
     } else if (selectTab === 'charts') {
       content = <Charts />;
     } else if (selectTab === 'orderbook') {
@@ -115,8 +129,8 @@ class App extends React.PureComponent {
         <>
           <div className="title">
             <div>
-              <div>Orderbook</div>
-              <div className="text-secondary">Available Bid and Ask orders</div>
+              <div>{dexTranslations.Orderbook}</div>
+              <div className="text-secondary">{dexTranslations.orderbookTip}</div>
             </div>
           </div>
           <OrderBook />
@@ -281,6 +295,8 @@ class App extends React.PureComponent {
 
   renderDesktop() {
     const currentPath = this.state.currentPath;
+    const { dexTranslations } = this.props;
+
     if (currentPath === mainPagePath) {
       return (
         <div className="flex flex-1 overflow-hidden">
@@ -293,7 +309,7 @@ class App extends React.PureComponent {
             <div className="grid border-right-dark flex-column">
               <div className="title">
                 <div className="titleLogo"/>
-                <div>Orderbook</div>
+                <div>{dexTranslations.Orderbook}</div>
               </div>
               <OrderBook />
             </div>
@@ -303,14 +319,14 @@ class App extends React.PureComponent {
               <Charts />
             </div>
             <div className="grid flex-1 border-top-dark">
-              <Orders />
+              <Orders dexTranslations={dexTranslations}/>
             </div>
           </div>
           <div className="flex-column">
             <div className="grid border-left-dark flex-1">
               <div className="title flex align-items-center">
                 <div className="titleLogo"/>
-                <div>Trade History</div>
+                <div>{dexTranslations.tradeHistory}</div>
               </div>
               <TradeHistory />
             </div>
@@ -333,7 +349,7 @@ class App extends React.PureComponent {
   }
   
   render() {
-    const { currentMarket, networkId, selectedAccountID } = this.props;
+    const { currentMarket, networkId, selectedAccountID, walletTranslations} = this.props;
     if (!currentMarket) {
       return null;
     }
@@ -341,7 +357,7 @@ class App extends React.PureComponent {
     const defaultWalletType = (window.web3 && window.web3.eth && window.injectWeb3) ? 'LIGHTWALLET' : 'Hydro-Wallet';
     return (
       <div className="app">
-        <SDKWallet title="Starter Kit Wallet" nodeUrl={env.NODE_URL} unit="WAN" defaultWalletType={defaultWalletType} />
+        <SDKWallet title="Starter Kit Wallet" nodeUrl={env.NODE_URL} unit="WAN" defaultWalletType={defaultWalletType} translations={walletTranslations} />
         <WebsocketConnector />
         <Header setPath={this.setPath} currentPath={this.state.currentPath}/>
         {selectedAccountID === 'EXTENSION' && parseInt(networkId, 10) !== parseInt(env.NETWORK_ID, 10) && (

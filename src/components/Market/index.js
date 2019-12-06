@@ -56,7 +56,8 @@ function formatMarket(market) {
 const mapStateToProps = state => {
   return {
     currentMarket: state.market.getIn(['markets', 'currentMarket']),
-    markets: state.market.getIn(['markets', 'data']).map(market => formatMarket(market))
+    markets: state.market.getIn(['markets', 'data']).map(market => formatMarket(market)),
+    dexTranslations: state.dex.get("dexTranslations")
   };
 };
 
@@ -73,6 +74,7 @@ class Market extends React.PureComponent {
   }
 
   render() {
+    const { dexTranslations } = this.props;
     return (
       <div>
         <div style={{background: "$backgroundGrey"}}>
@@ -89,6 +91,7 @@ class Market extends React.PureComponent {
             markets={this.state.candidateMarkets}
             fiatUnit={this.state.fiatUnit}
             onSelectMarket={(market) => this.selectMarket(market)}
+            dexTranslations={dexTranslations}
           />
         </div>
       </div>

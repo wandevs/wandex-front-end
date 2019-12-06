@@ -10,7 +10,8 @@ const mapStateToProps = state => {
   return {
     orders: state.account.get('orders'),
     isLoggedIn: state.account.getIn(['isLoggedIn', address]),
-    currentMarket: state.market.getIn(['markets', 'currentMarket'])
+    currentMarket: state.market.getIn(['markets', 'currentMarket']),
+    dexTranslations: state.dex.get('dexTranslations'),
   };
 };
 
@@ -30,16 +31,16 @@ class OpenOrders extends React.PureComponent {
   }
 
   render() {
-    const { orders, dispatch, currentMarket } = this.props;
+    const { orders, dispatch, currentMarket, dexTranslations } = this.props;
     return (
       <div className="orders flex-1 position-relative overflow-auto" >
         <table className="table">
           <thead>
             <tr className="text-secondary">
-              <th className="pair-column">Pair</th>
-              <th>Side</th>
-              <th className="text-right">Price</th>
-              <th className="text-right">Amount</th>
+              <th className="pair-column">{dexTranslations.Pair}</th>
+              <th>{dexTranslations.Side}</th>
+              <th className="text-right">{dexTranslations.Price}</th>
+              <th className="text-right">{dexTranslations.Amount}</th>
               <th />
             </tr>
           </thead>
@@ -65,7 +66,7 @@ class OpenOrders extends React.PureComponent {
                         dispatch(addActivity("cancelOrder:"+ order.id));
                         dispatch(cancelOrder(order.id))
                       }}>
-                        Cancel
+                        {dexTranslations.Cancel}
                       </button>
                     </td>
                   </tr>

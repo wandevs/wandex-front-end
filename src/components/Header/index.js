@@ -1,6 +1,7 @@
 import React from 'react';
 import { loginRequest, login } from '../../actions/account';
 import { loadActivity, addActivity } from '../../actions/activity';
+import { setDexTranslations } from '../../actions/dex';
 import { connect } from 'react-redux';
 import { WalletButton, getSelectedAccount } from 'wan-dex-sdk-wallet';
 import style from './styles.scss';
@@ -18,7 +19,8 @@ const mapStateToProps = state => {
     isLocked: selectedAccount ? selectedAccount.get('isLocked') : true,
     isLoggedIn: state.account.getIn(['isLoggedIn', address]),
     currentMarket: state.market.getIn(['markets', 'currentMarket']),
-    markets: state.market.getIn(['markets', 'data'])
+    markets: state.market.getIn(['markets', 'data']),
+    dexTranslations: state.dex.get('dexTranslations'),
   };
 };
 
@@ -26,12 +28,9 @@ export const mainPagePath = '/main';
 export const orderDetailPagePath = '/ordersdetail';
 export const activityPagePath = '/activity';
 
-const orderName = "Orders";
-const activityName = "Activity";
-const backName = "Back";
 class Header extends React.PureComponent {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       balanceModelVisible: false,
       guideModeVisible: false,
@@ -58,21 +57,29 @@ class Header extends React.PureComponent {
     }
   }
   UNSAFE_componentWillUpdate(nextProp) {
-    const { address, isLocked } = this.props;
+    const { dispatch, address, isLocked } = this.props;
     if (nextProp.isLocked !== isLocked) {
       console.log("lock:" + nextProp.isLocked + " address:" + address);
       if (!nextProp.isLocked) {
-        this.props.dispatch(addActivity("unlock:" + address))
+        dispatch(addActivity("unlock:" + address))
       }
     }
   }
 
   setPath = (name) => {
-    if (this.props.currentPath === name) {
+    const { currentPath } = this.props;
+
+    if (currentPath === name) {
       this.props.setPath(mainPagePath)
     } else {
       this.props.setPath(name)
     }
+  };
+
+  setLanguage = (name) => {
+    const { dispatch } = this.props;
+
+    setDexTranslations(name, dispatch)
   };
 
   openBalanceModel = () => {
@@ -92,6 +99,10 @@ class Header extends React.PureComponent {
   }
 
   render() {
+    const { dexTranslations } = this.props;
+    const orderName = dexTranslations.Orders;
+    const activityName = dexTranslations.Activity;
+    const backName = dexTranslations.Back;
     return (
       <div className={style.Header}>
         <div className={style.headerHeight + " navbar bg-darkblue navbar-expand-lg"}>
@@ -117,7 +128,7 @@ class Header extends React.PureComponent {
           <div className={style.vline}/>
           <div className={style.item}>
             <button className={style.mynav} onClick={() => { this.openBalanceModel()}}>
-              Balances
+              {dexTranslations.Balances}
             </button>
             {
               this.state.balanceModelVisible 
@@ -147,13 +158,13 @@ class Header extends React.PureComponent {
                             href="https://github.com/wanchain/dex-scaffold"
                             target="_blank"
                             rel="noopener noreferrer">
-                            <div className={style.menuitem}>Documents</div>
+                            <div className={style.menuitem}>{dexTranslations.Documents}</div>
                         </a>
                       </Menu.Item>
                     </Menu>
                 )}>
               <button className={style.mynav}>
-                Settings <Icon type="down" />
+                {dexTranslations.Settings} <Icon type="down" />
               </button>
             </Dropdown>
           </div>
@@ -169,15 +180,15 @@ class Header extends React.PureComponent {
                 overlay={(
                     <Menu>
                       <Menu.Item>
-                        <div className={style.menuitem} onClick={() => { /*this.setPath()*/ }}>English</div>
+                        <div className={style.menuitem} onClick={() => { this.setLanguage("English") }}>{dexTranslations.English}</div>
                       </Menu.Item>
-                      {/* <Menu.Item>
-                        <div className={style.menuitem}>Chinese</div>
-                      </Menu.Item> */}
+                      <Menu.Item>
+                        <div className={style.menuitem} onClick={() => { this.setLanguage("Chinese") }}>{dexTranslations.Chinese}</div>
+                      </Menu.Item>
                     </Menu>
                 )}>
               <button className={style.mynav} >
-                Language  <Icon type="down" />
+                {dexTranslations.Language}  <Icon type="down" />
               </button>
             </Dropdown>
           </div>

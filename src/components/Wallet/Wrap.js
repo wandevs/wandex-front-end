@@ -14,7 +14,8 @@ const mapStateToProps = state => {
   const wwanBalance = stateUtils.getTokenAvailableBalance(state, address, 'WWAN');
   return {
     wanBalance: toUnitAmount(wanBalance, 18),
-    wwanBalance: toUnitAmount(wwanBalance, WWAN.decimals)
+    wwanBalance: toUnitAmount(wwanBalance, WWAN.decimals),
+    dexTranslations: state.dex.get('dexTranslations')
   };
 };
 
@@ -34,15 +35,16 @@ class Wrap extends React.PureComponent {
   }
 
   render() {
-    const { wanBalance, wwanBalance, type } = this.props;
+    const { wanBalance, wwanBalance, type, dexTranslations } = this.props;
     const { amount } = this.state;
     const isWrap = type === 'wrap';
+    const typeLabel = isWrap? dexTranslations.wrap : dexTranslations.unwrap;
 
     return (
       <form className="form flex-column text-secondary flex-1 justify-content-between block">
         <div className="form-group">
           <label className="text-secondary">
-            Amount ({isWrap ? wanBalance.toFixed(8) : wwanBalance.toFixed(8)} Max)
+            {dexTranslations.Amount} ({isWrap ? wanBalance.toFixed(8) : wwanBalance.toFixed(8)} {dexTranslations.Max})
           </label>
           <div className="input-group">
             <input
@@ -59,22 +61,24 @@ class Wrap extends React.PureComponent {
           type="button"
           className={`form-control btn ${isWrap ? 'btn-success' : 'btn-danger'}`}
           onClick={() => this.submit()}>
-          {type}
+          {typeLabel}
         </button>
       </form>
     );
   }
 
   submit() {
-    const { dispatch, type, wanBalance, wwanBalance } = this.props;
+    const { dispatch, type, wanBalance, wwanBalance, dexTranslations} = this.props;
+    const isWrap = type === 'wrap';
+    const typeLabel = isWrap? dexTranslations.wrap : dexTranslations.unwrap;
     const { amount } = this.state;
     let value = new BigNumber(amount || "0");
     let balance = (type === 'wrap')? wanBalance : wwanBalance;
     if (value.lte(0)) {
-      window.alertAntd({tip: "Amount must be larger than 0"});
+      window.alertAntd({tip: dexTranslations.wrapTip1});
       return;
     } else if (value.gt(balance)) {
-      window.alertAntd({tip: "Asset is insufficient to " + type});
+      window.alertAntd({tip: dexTranslations.wrapTip2 + typeLabel});
       return;
     }
     if (type === 'wrap') {

@@ -4,23 +4,24 @@ import Trades from './Trades';
 import Selector from '../Selector';
 import './styles.scss';
 
-const OPTIONS = [{ value: 'openOrders', name: 'Open' }, { value: 'filled', name: 'Filled' }];
 
 class Orders extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      selectedAccountID: OPTIONS[0].value
+      selectedAccountID: 'openOrders'
     };
   }
   render() {
     const { selectedAccountID } = this.state;
+    const { dexTranslations } = this.props;
+    const OPTIONS = [{ value: 'openOrders', name: dexTranslations.Orders }, { value: 'filled', name: dexTranslations.Filled }];
     return (
       <>
         <div className="title flex justify-content-between align-items-center">
           <div className="title">
             <div className="titleLogo"/>
-            <div>Orders</div>
+            <div>{dexTranslations.Orders}</div>
           </div>
           <Selector
             options={OPTIONS}

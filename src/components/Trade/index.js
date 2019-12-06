@@ -40,7 +40,7 @@ const mapStateToProps = state => {
       estimatedPrice: new BigNumber(0),
       marketOrderWorstPrice: new BigNumber(0),
       marketOrderWorstTotalQuote: new BigNumber(0),
-      marketOrderWorstTotalBase: new BigNumber(0)
+      marketOrderWorstTotalBase: new BigNumber(0),
     },
     lastPrice,
     selectPrice,
@@ -69,6 +69,7 @@ const mapStateToProps = state => {
     bestAskPrice: asks.size > 0 ? asks.get(asks.size - 1)[0].toString() : null,
     bids,
     asks,
+    dexTranslations: state.dex.get('dexTranslations'),
   };
 };
 
@@ -108,7 +109,7 @@ class Trade extends React.PureComponent {
   }
 
   render() {
-    const { side, handleSubmit, currentMarket, total, gasFee, amount, tradeFee, subtotal, change, quoteTokenBalance, baseTokenBalance, orderType } = this.props;
+    const { side, handleSubmit, currentMarket, total, gasFee, amount, tradeFee, subtotal, change, quoteTokenBalance, baseTokenBalance, orderType, dexTranslations } = this.props;
     if (!currentMarket) {
       return null;
     }
@@ -124,7 +125,7 @@ class Trade extends React.PureComponent {
       <>
         <div className="title">
           <div className="titleLogo"/>
-          <div>Trade</div>
+          <div>{dexTranslations.Trade}</div>
         </div>
         <div className="trade flex-1 flex-column overflow-auto">
           <ul className="nav nav-tabs">
@@ -132,14 +133,14 @@ class Trade extends React.PureComponent {
               <div
                 className={`flex-1 tab-button text-secondary text-center${side === 'buy' ? ' active' : ''}`}
                 onClick={() => change('side', 'buy')}>
-                Buy
+                {dexTranslations.Buy}
               </div>
             </li>
             <li className="nav-item flex-1 flex">
               <div
                 className={`flex-1 tab-button text-secondary text-center${side === 'sell' ? ' active' : ''}`}
                 onClick={() => change('side', 'sell')}>
-                Sell
+                {dexTranslations.Sell}
               </div>
             </li>
           </ul>
@@ -153,8 +154,8 @@ class Trade extends React.PureComponent {
                   defaultValue="limit"
                   value={orderType}
                   >
-                  <Option value="limit" onClick={()=>this.changeOrderType("limit")}>Limit Order</Option>
-                  <Option value="market" onClick={()=>this.changeOrderType("market")}>Market Order</Option>
+                  <Option value="limit" onClick={()=>this.changeOrderType("limit")}>{dexTranslations.LimitOrder}</Option>
+                  <Option value="market" onClick={()=>this.changeOrderType("market")}>{dexTranslations.MarketOrder}</Option>
                 </Select>
                 </div>
                 {
@@ -162,15 +163,15 @@ class Trade extends React.PureComponent {
                   (
                   <div>
                     <div className="best-buttons">
-                      <Button onClick={()=>this.updatePrice("ask")} className="best-button">Best Ask</Button>
-                      <Button onClick={()=>this.updatePrice("bid")} className="best-button-right">Best Bid</Button>
+                      <Button onClick={()=>this.updatePrice("ask")} className="best-button">{dexTranslations.BestAsk}</Button>
+                      <Button onClick={()=>this.updatePrice("bid")} className="best-button-right">{dexTranslations.BestBid}</Button>
                     </div>
                     <Field
                       name="price"
                       unit={currentMarket.quoteToken}
                       autoComplete="off"
                       component={this.renderField}
-                      label="Limit Price"
+                      label={dexTranslations.LimitPrice}
                       placeholder={Number(0).toFixed(currentMarket.priceDecimals)}
                       type="number"
                       min="0"
@@ -187,7 +188,7 @@ class Trade extends React.PureComponent {
                       unit={currentMarket.baseToken}
                       autoComplete="off"
                       component={this.renderDisableField}
-                      label={currentMarket.baseToken + " Amount Estimate"}
+                      label={currentMarket.baseToken + " " + dexTranslations.AmountEstimate}
                       placeholder={Number(0).toFixed(currentMarket.priceDecimals)}
                       type="text"
                       min="0"
@@ -197,7 +198,7 @@ class Trade extends React.PureComponent {
                       unit={currentMarket.quoteToken}
                       autoComplete="off"
                       component={this.renderDisableField}
-                      label="Average Price Estimate"
+                      label={dexTranslations.AveragePriceEstimate}
                       placeholder={Number(0).toFixed(currentMarket.priceDecimals)}
                       type="text"
                       min="0"
@@ -211,7 +212,7 @@ class Trade extends React.PureComponent {
                   unit={amountUnit}
                   autoComplete="off"
                   component={this.renderField}
-                  label="Amount"
+                  label={dexTranslations.Amount}
                   placeholder={Number(0).toFixed(amountDecimals)}
                   type="number"
                   min="0"
@@ -225,14 +226,14 @@ class Trade extends React.PureComponent {
                   <Button onClick={()=>this.updateAmount(100)} className="percentButton">100%</Button>
                 </div>
                 <div className="form-group">
-                  <div className="form-title">Order Summary</div>
+                  <div className="form-title">{dexTranslations.OrderSummary}</div>
                   <div className="list">
                     <div className="item flex justify-content-between">
-                      <div className="name">Amount</div>
+                      <div className="name">{dexTranslations.Amount}</div>
                       <div className="name">{amount.toFixed(amountDecimals) + " " + amountUnit}</div>
                     </div>
                     <div className="item flex justify-content-between" style={{"marginBottom":"10px"}}>
-                      <div className="name">{(side === 'buy' ? currentMarket.quoteToken:currentMarket.baseToken) + " Available"}</div>
+                      <div className="name">{(side === 'buy' ? currentMarket.quoteToken:currentMarket.baseToken) + " " + dexTranslations.Available}</div>
                       <div className="name">
                       {
                         side === 'buy'?
@@ -242,15 +243,15 @@ class Trade extends React.PureComponent {
                       </div>
                     </div>
                     <div className="item flex justify-content-between">
-                      <div className="name">Subtotal</div>
+                      <div className="name">{dexTranslations.Subtotal}</div>
                       <div className="name">{subtotal.toFixed(disDecimal)+ " " + currentMarket.quoteToken}</div>
                     </div>
                     <div className="item flex justify-content-between" style={{"marginBottom":"10px"}}>
-                      <div className="name">Fees</div>
+                      <div className="name">{dexTranslations.Fees}</div>
                       <div className="name">{gasFee.plus(tradeFee).toFixed(disDecimal)+ " " + currentMarket.quoteToken}</div>
                     </div>
                     <div className="item flex justify-content-between">
-                      <div className="name">Total</div>
+                      <div className="name">{dexTranslations.Total}</div>
                       <div className="name">{total.toFixed(disDecimal)+ " " + currentMarket.quoteToken}</div>
                     </div>
                   </div>

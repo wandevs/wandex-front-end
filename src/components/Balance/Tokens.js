@@ -17,7 +17,8 @@ const mapStateToProps = state => {
     tokensInfo: stateUtils.getTokensInfo(state, address),
     address,
     wanBalance: toUnitAmount(state.WalletReducer.getIn(['accounts', selectedAccountID, 'balance']), 18),
-    markets: state.market.getIn(['markets', 'data']).toArray()
+    markets: state.market.getIn(['markets', 'data']).toArray(),
+    dexTranslations : state.dex.get("dexTranslations"),
   };
 };
 
@@ -69,9 +70,9 @@ class Tokens extends React.PureComponent {
   }
 
   render() {
-    const { dispatch, tokensInfo, /*wanBalance*/ } = this.props;
+    const { dispatch, tokensInfo, dexTranslations /*wanBalance*/ } = this.props;
     const displayDecimals = 6;
-    const toolTipApprove = 'Approve operation switch will cost about 0.01 WAN for gas fee.'
+    const toolTipApprove = dexTranslations.toolTipApprove;
     const tokensInfoArray = tokensInfo.toArray();
     this.moveWwanToFirst(tokensInfoArray);
     
@@ -122,7 +123,7 @@ class Tokens extends React.PureComponent {
 
               <div className="flex-column col-5">
                 <div>{token}</div>
-                <div className={styles.fiatColor}>{isApproved ? 'Enabled' : 'Disabled'}</div>
+                <div className={styles.fiatColor}>{isApproved ? dexTranslations.Enabled : dexTranslations.Disabled}</div>
               </div>
               <div className="col-5 text-right">
                 <Tooltip title={toolTipTitle}>

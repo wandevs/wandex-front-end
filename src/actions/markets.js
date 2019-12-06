@@ -91,6 +91,8 @@ export const loadMarkets = () => {
           markets
         }
       });
+    } else {
+      window.alertAntd(res.data.desc);
     }
   };
 };

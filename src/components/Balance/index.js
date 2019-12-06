@@ -18,7 +18,8 @@ const mapStateToProps = state => {
     tokensInfo: stateUtils.getTokensInfo(state, address),
     wanBalance: toUnitAmount(state.WalletReducer.getIn(['accounts', selectedAccountID, 'balance']), 18),
     markets: state.market.getIn(['markets', 'data']).toArray(),
-    address
+    address,
+    dexTranslations : state.dex.get("dexTranslations"),
   };
 };
 
@@ -141,7 +142,7 @@ class Balance extends React.PureComponent {
   }
 
   render() {
-    const { wanBalance } = this.props;
+    const { wanBalance, dexTranslations } = this.props;
     let totalFiat = this.state.totalFiat;
     const displayDecimals = 6;
     let wwanBalance = this.state.wwanBalance;
@@ -160,7 +161,7 @@ class Balance extends React.PureComponent {
     return (
       <div>
         <Modal
-          title="Balances"
+          title={dexTranslations.Balances}
           visible={this.props.visible}
           onCancel={this.props.onCancel}
           footer={null}
@@ -170,11 +171,11 @@ class Balance extends React.PureComponent {
           </div>
           <div className={styles.totalBalance + " flex"}>
             <span className={styles.totalBalanceFont + " flex-2"}>{"$"+totalFiat.toFixed(2)}</span>
-            <span className={styles.totalBalanceFontSecond + " flex-1"}>Estimated Balance (Fiat)</span>
+            <span className={styles.totalBalanceFontSecond + " flex-1"}>{dexTranslations.estimated}</span>
           </div>
           <div className="flex">
-            <Button className={styles.wrapButtonLeft + " flex-1"} onClick={this.showWrapDrawer}>WRAP WAN</Button>
-            <Button className={styles.wrapButtonRight + " flex-1"} onClick={this.showUnwrapDrawer}>UNWRAP WAN</Button>
+            <Button className={styles.wrapButtonLeft + " flex-1"} onClick={this.showWrapDrawer}>{dexTranslations.wrapWan}</Button>
+            <Button className={styles.wrapButtonRight + " flex-1"} onClick={this.showUnwrapDrawer}>{dexTranslations.unwrapWan}</Button>
           </div>
           <div className={styles.tokensContainer} >
             <Drawer
@@ -187,7 +188,7 @@ class Balance extends React.PureComponent {
               style={{ position: 'absolute' }}
               // className={styles.tokensContainer}
             >
-              <div className={styles.wanBalance}>{"Balance: " + wrapBalance}</div>
+              <div className={styles.wanBalance}>{dexTranslations.Balance + ": " + wrapBalance}</div>
               <InputNumber 
                 size="large" 
                 placeholder={"Input the count to "+(this.state.wrapVisible?"wrap":"unwrap")} 
@@ -196,10 +197,10 @@ class Balance extends React.PureComponent {
                 value={this.state.wrapAmount}
                 onChange={value => this.setState({wrapAmount: truncateDecimals(value.toString(), 8)})}
                 />
-              <p style={{color:"gray"}}>Native WAN token must be "wrapped" in an WRC20-compatible form before being traded with other tokens.</p>
+              <p style={{color:"gray"}}>{dexTranslations.wanWaning}</p>
               <div className="flex">
-                <Button className={styles.wrapSendButton + " flex-1"} onClick={this.onWrapSubmit}>{(this.state.wrapVisible || (!this.state.wrapVisible && !this.state.unwrapVisible))?"WRAP":"UNWRAP"}</Button>
-                <Button className={styles.wrapSendButton + " flex-1"} onClick={this.onWrapClose}>CANCEL</Button>
+                <Button className={styles.wrapSendButton + " flex-1"} onClick={this.onWrapSubmit}>{(this.state.wrapVisible || (!this.state.wrapVisible && !this.state.unwrapVisible))?dexTranslations.WRAP:dexTranslations.UNWRAP}</Button>
+                <Button className={styles.wrapSendButton + " flex-1"} onClick={this.onWrapClose}>{dexTranslations.cancel}</Button>
               </div>
             </Drawer>
             <Tokens/>

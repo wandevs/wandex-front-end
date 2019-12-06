@@ -6,7 +6,8 @@ import moment from 'moment';
 const mapStateToProps = state => {
   return {
     tradeHistory: state.market.get('tradeHistory'),
-    currentMarket: state.market.getIn(['markets', 'currentMarket'])
+    currentMarket: state.market.getIn(['markets', 'currentMarket']),
+    dexTranslations: state.dex.get('dexTranslations'),
   };
 };
 
@@ -16,15 +17,15 @@ class TradeHistory extends React.PureComponent {
   // }
 
   render() {
-    const { tradeHistory, currentMarket } = this.props;
+    const { tradeHistory, currentMarket, dexTranslations } = this.props;
     return (
       <div className="trade-history flex-1 position-relative overflow-auto panelBg">
         <table className="table">
           <thead>
             <tr className="text-secondary">
-              <th className="text-right">Price</th>
-              <th className="text-right">Amount</th>
-              <th>Time</th>
+              <th className="text-right">{dexTranslations.Price}</th>
+              <th className="text-right">{dexTranslations.Amount}</th>
+              <th>{dexTranslations.Time}</th>
             </tr>
           </thead>
           <tbody>
