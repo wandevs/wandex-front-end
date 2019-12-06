@@ -68,4 +68,5 @@ export default {
   wrapTip2: "资产不足，不能",
   QuickStartGuide: "快速引导",
   Gotit:"知道",
+  History: "历史",
 }

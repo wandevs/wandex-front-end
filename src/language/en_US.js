@@ -68,4 +68,5 @@ export default {
   wrapTip2: "Asset is insufficient to ",
   QuickStartGuide: "Quick Start Guide",
   Gotit: "Got it",
+  History: "History",
 }

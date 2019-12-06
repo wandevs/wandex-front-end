@@ -140,7 +140,7 @@ class App extends React.PureComponent {
       content = (
         <>
           <div className="title flex align-items-center">
-            <div>Trade History</div>
+            <div>{dexTranslations.tradeHistory}</div>
           </div>
           <TradeHistory />
         </>
@@ -158,42 +158,42 @@ class App extends React.PureComponent {
               <div
                 onClick={() => this.setState({ mobileTab: 'trade' })}
                 className={`tab-button text-secondary text-center${selectTab === 'trade' ? ' active' : ''}`}>
-                Trade
+                {dexTranslations.Trade}
               </div>
             </div>
             <div className="nav-item flex-1 border-top-dark d-inline-block">
               <div
                 onClick={() => this.setState({ mobileTab: 'orders' })}
                 className={`tab-button text-secondary text-center${selectTab === 'orders' ? ' active' : ''}`}>
-                Orders
+                {dexTranslations.Orders}
               </div>
             </div>
             <div className="nav-item flex-1 border-top-dark d-inline-block">
               <div
                 onClick={() => this.setState({ mobileTab: 'charts' })}
                 className={`tab-button text-secondary text-center${selectTab === 'charts' ? ' active' : ''}`}>
-                Charts
+                {dexTranslations.Charts}
               </div>
             </div>
             <div className="nav-item flex-1 border-top-dark d-inline-block">
               <div
                 onClick={() => this.setState({ mobileTab: 'orderbook' })}
                 className={`tab-button text-secondary text-center${selectTab === 'orderbook' ? ' active' : ''}`}>
-                Orderbook
+                {dexTranslations.Orderbook}
               </div>
             </div>
             <div className="nav-item flex-1 border-top-dark d-inline-block">
               <div
                 onClick={() => this.setState({ mobileTab: 'history' })}
                 className={`tab-button text-secondary text-center${selectTab === 'history' ? ' active' : ''}`}>
-                History
+                {dexTranslations.History}
               </div>
             </div>
             <div className="nav-item flex-1 border-top-dark d-inline-block">
               <div
                 onClick={() => this.setState({ mobileTab: 'wallet' })}
                 className={`tab-button text-secondary text-center${selectTab === 'wallet' ? ' active' : ''}`}>
-                Wallet
+                {dexTranslations.Wallet}
               </div>
             </div>
           </div>
