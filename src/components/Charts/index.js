@@ -6,6 +6,8 @@ import api from '../../lib/api';
 import '../../styles/variables.scss';
 
 class Charts extends React.Component {
+  _isMounted = false;
+
   constructor(props) {
     super(props);
     this.tradeChartWrapper = React.createRef();
@@ -26,6 +28,7 @@ class Charts extends React.Component {
   }
 
   componentDidMount() {
+    this._isMounted = true;
     this.loadData();
     this.interval = window.setInterval(() => this.loadRight(), 60000);
   }
@@ -43,6 +46,7 @@ class Charts extends React.Component {
   }
 
   componentWillUnmount() {
+    this._isMounted = false;
     if (this.interval) {
       window.clearInterval(this.interval);
     }
@@ -81,11 +85,15 @@ class Charts extends React.Component {
         }`
       );
       if (res.data.data.meta && res.data.data.meta.noData) {
-        this.setState({ loading: false, noData: true });
+        if (this._isMounted) {
+          this.setState({ loading: false, noData: true });
+        }
         return;
       }
     } catch (e) {
-      this.setState({ loading: false });
+      if (this._isMounted) {
+        this.setState({ loading: false });
+      }
       return;
     }
 
@@ -122,8 +130,10 @@ class Charts extends React.Component {
       }
     }
 
-    this.setState(changeState);
-    this.setState({ loading: false });
+    if (this._isMounted) {
+      this.setState(changeState);
+      this.setState({ loading: false });
+    }
   }
 
   fitLengthToShow() {
