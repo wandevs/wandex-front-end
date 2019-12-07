@@ -3,6 +3,7 @@ import OpenOrders from './OpenOrders';
 import Trades from './Trades';
 import Selector from '../Selector';
 import './styles.scss';
+import connect from 'react-redux/es/connect/connect';
 
 
 class Orders extends React.PureComponent {
@@ -37,4 +38,10 @@ class Orders extends React.PureComponent {
   }
 }
 
-export default Orders;
+const mapStateToProps = state => {
+  return {
+    dexTranslations: state.language.get('dexTranslations'),
+  };
+};
+
+export default connect(mapStateToProps)(Orders);
