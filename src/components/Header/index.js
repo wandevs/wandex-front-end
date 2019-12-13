@@ -107,7 +107,7 @@ class Header extends React.PureComponent {
       <div className={style.Header}>
         <div className={style.headerHeight + " navbar bg-darkblue navbar-expand-lg"}>
           <div className="navbar-brand">
-            <img className={style.logoimg} src={require('../../images/logo.png')} alt="wr" />
+            {/* <img className={style.logoimg} src={require('../../images/logo.png')} alt="wr" /> */}
           </div>
           <div className="dropdown navbar-nav mr-auto"/>
         <button
