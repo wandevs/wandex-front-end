@@ -16,10 +16,11 @@ const mapStateToProps = state => {
   const selectedAccount = getSelectedAccount(state);
   const address = selectedAccount ? selectedAccount.get('address') : null;
   return {
-    orders: state.account.get('orders'),
-    ordersCount: state.account.get('ordersCount'),
-    otherOrders: state.account.get('otherOrders'),
     isLoggedIn: state.account.getIn(['isLoggedIn', address]),
+    orders: state.account.get('orders'),
+    otherOrders: state.account.get('otherOrders'),
+    ordersCount: state.account.get('ordersCount'),
+    otherOrdersCount: state.account.get('otherOrdersCount'),
     orderLoading: state.account.get('order_loading'),
     otherOrderLoading: state.account.get('other_order_loading'),
     currentMarket: state.market.getIn(['markets', 'currentMarket']),
@@ -83,8 +84,10 @@ class OrderDetail extends React.PureComponent {
         />
         <OrdersDetail loading={otherOrderLoading}
                       typeOrders={otherOrders}
+                      count={this.props.otherOrdersCount}
                       itemType={2}
                       currentMarket={currentMarket}
+                      loadMore={() => this.loadMore(2)}
                       dexTranslations={ dexTranslations}
         />
       </div>

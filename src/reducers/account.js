@@ -40,7 +40,7 @@ export default (state = initState, action) => {
       return state;
     case 'LOAD_ORDERS':
       state = state.set('orders', OrderedMap());
-      action.payload.orders.reverse().forEach(o => {
+      action.payload.orders.forEach(o => {
         state = state.setIn(['orders', o.id], o);
       });
       state = state.set('ordersCount', action.payload.ordersCount);
@@ -50,7 +50,7 @@ export default (state = initState, action) => {
       const old = state.get('orders');
       // state = state.set('orders', OrderedMap());
       let n = OrderedMap();
-      action.payload.orders.reverse().forEach(o => {
+      action.payload.orders.forEach(o => {
         n = n.set(o.id, o);
       });
       state = state.set('orders', old.concat(n));
@@ -70,6 +70,17 @@ export default (state = initState, action) => {
       });
       state = state.set('otherOrdersCount', action.payload.otherOrdersCount);
       return state;
+    case 'LOAD_MORE_OTHER_ORDERS':
+    {
+      const old = state.get('otherOrders');
+      let n = OrderedMap();
+      action.payload.otherOrders.forEach(o => {
+        n = n.set(o.id, o);
+      });
+      state = state.set('otherOrders', old.concat(n));
+      state = state.set('otherOrdersCount', action.payload.otherOrdersCount);
+      return state;
+    }
     case 'ORDER_UPDATE':
       const order = action.payload.order;
       const ordersPath = ['orders', order.id];

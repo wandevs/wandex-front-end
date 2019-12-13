@@ -230,7 +230,7 @@ export const loadMoreOrders = () => {
 export const loadOtherOrders = () => {
   return async (dispatch, getState) => {
     const currentMarket = getState().market.getIn(['markets', 'currentMarket']);
-    const res = await api.get(`/orders/nostatus?marketID=${currentMarket.id}`);
+    const res = await api.get(`/otherorders?marketID=${currentMarket.id}`);
     markOtherOrderLoadingState(dispatch, false);
     if (res.data.status === 0) {
       const data = res.data.data;
@@ -259,12 +259,12 @@ export const loadMoreOtherOrders = () => {
 
     const perPage = 20;
     const page = parseInt((old.size + perPage - 1) / perPage) + 1;
-    const res = await api.get(`/orders/nostatus?marketID=${currentMarket.id}&page=${page}&perPage=${perPage}`);
+    const res = await api.get(`/otherorders?marketID=${currentMarket.id}&page=${page}&perPage=${perPage}`);
 
     if (res.data.status === 0) {
       const data = res.data.data;
       dispatch({
-        type: 'LOAD_OTHER_ORDERS',
+        type: 'LOAD_MORE_OTHER_ORDERS',
         payload: {
           otherOrders: data ? data.orders.map(format) : [],
           otherOrdersCount: data ? data.count : 0
