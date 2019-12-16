@@ -1,4 +1,5 @@
-const { override, fixBabelImports, addLessLoader, addWebpackModuleRule } = require('customize-cra');
+const { override, fixBabelImports, addLessLoader, addWebpackModuleRule, addWebpackPlugin } = require('customize-cra');
+const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin');
 
 module.exports = override(
   fixBabelImports('import', {
@@ -38,4 +39,6 @@ module.exports = override(
       '@background-color-base':'#1B1C2E'
     },
   }),
+
+  addWebpackPlugin(new AntdDayjsWebpackPlugin()),
 );
