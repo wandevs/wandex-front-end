@@ -27,3 +27,7 @@ This is the front end of the WanDevs dex project. It's developed using react. Th
 ### Step 1: Build
 
 	yarn build
+
+## Start with a docker image
+
+	docker-compose up -d
