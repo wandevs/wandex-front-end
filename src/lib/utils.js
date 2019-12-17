@@ -28,7 +28,8 @@ export const getFiatPrice = async (tokenNameArray, fiatName = "USD") => {
       timeout: 5000,
       params: {
         fsyms: tokenArray.join(),
-        tsyms: fiatName
+        tsyms: fiatName,
+        api_key: '55b208aeb1740c3db63421ea086a2b0d3cc983b51621f3d84505ae419ec87525',
       }
     })
     return ret;
