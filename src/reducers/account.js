@@ -117,10 +117,22 @@ export default (state = initState, action) => {
       tokenInfoState = tokenInfoState.set('allowance', allowance);
       tokenInfoState = tokenInfoState.set('balance', balance);
       tokenInfoState = tokenInfoState.set('address', tokenAddress);
+      tokenInfoState = tokenInfoState.set('symbol', symbol);
+
       if (decimals) {
         tokenInfoState = tokenInfoState.set('decimals', decimals);
       }
       state = state.setIn(['tokensInfo', accountAddress, symbol], tokenInfoState);
+      return state;
+    }
+    case 'TOKEN_APPROVE_START': {
+      const { symbol } = action.payload;
+      state = state.setIn(['approving', symbol], true);
+      return state;
+    }
+    case 'TOKEN_APPROVE_END': {
+      const { symbol } = action.payload;
+      state = state.setIn(['approving', symbol], false);
       return state;
     }
     default:

@@ -18,5 +18,8 @@ export const stateUtils = {
     const balance = stateUtils.getTokenBalance(state, accountAddress, tokenSymbol);
     const lockedBalance = stateUtils.getTokenLockedBalance(state, accountAddress, tokenSymbol);
     return balance.minus(lockedBalance);
+  },
+  getApproveState: (state) => {
+    return state.account.getIn(['approving'], Map());
   }
 };

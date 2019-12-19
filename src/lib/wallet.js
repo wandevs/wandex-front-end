@@ -1,5 +1,5 @@
 import BigNumber from 'bignumber.js';
-import { watchToken } from '../actions/account';
+import { watchToken, tokenApproveFinish } from '../actions/account';
 import abi from './abi';
 import env from './env';
 import { getSelectedAccountWallet, getTransactionReceipt, getContract } from 'wan-dex-sdk-wallet';
@@ -134,9 +134,11 @@ export const approve = (tokenAddress, symbol, allowance, action, decimals) => {
         } else {
           window.alertAntd(`${action} ${symbol} Failed`);
         }
+        dispatch(tokenApproveFinish(symbol));
       });
       return transactionID;
     } catch (e) {
+      dispatch(tokenApproveFinish(symbol));
       popMsg(e);
     }
     return null;

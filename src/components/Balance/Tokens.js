@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { loadTokens } from '../../actions/account';
+import { loadTokens, tokenApproveStart, tokenApproveFinish } from '../../actions/account';
 import { toUnitAmount, isTokenApproved } from '../../lib/utils';
 import { stateUtils } from '../../selectors/account';
 import { enable, disable } from '../../lib/wallet';
@@ -15,6 +15,7 @@ const mapStateToProps = state => {
   const address = selectedAccount ? selectedAccount.get('address') : null;
   return {
     tokensInfo: stateUtils.getTokensInfo(state, address),
+    approving: stateUtils.getApproveState(state),
     address,
     wanBalance: toUnitAmount(state.WalletReducer.getIn(['accounts', selectedAccountID, 'balance']), 18),
     markets: state.market.getIn(['markets', 'data']).toArray(),
@@ -70,7 +71,7 @@ class Tokens extends React.PureComponent {
   }
 
   render() {
-    const { dispatch, tokensInfo, dexTranslations /*wanBalance*/ } = this.props;
+    const { dispatch, tokensInfo, dexTranslations /*wanBalance*/, approving } = this.props;
     const displayDecimals = 6;
     const toolTipApprove = dexTranslations.toolTipApprove;
     const tokensInfoArray = tokensInfo.toArray();
@@ -83,13 +84,12 @@ class Tokens extends React.PureComponent {
           <div className="col-6 text-right">{wanBalance.toFixed(displayDecimals)}</div>
         </div> */}
         {tokensInfoArray.map(([token, info]) => {
-          const { address, balance, allowance, decimals, lockedBalance } = info.toJS();
+          const { address, balance, allowance, decimals, lockedBalance, symbol } = info.toJS();
           const isApproved = isTokenApproved(allowance);
           const availableBalance = toUnitAmount(BigNumber.max(balance.minus(lockedBalance), '0'), decimals).toFixed(displayDecimals);
           const toolTipTitle = `In-Order: ${toUnitAmount(lockedBalance, decimals).toFixed(
             displayDecimals
           )}Total: ${toUnitAmount(balance, decimals).toFixed(displayDecimals)}`;
-          
           let fiat = 0;
           if(this.fiats) {
             fiat = (this.fiats[token]||0)*availableBalance;
@@ -111,12 +111,17 @@ class Tokens extends React.PureComponent {
                     } else {
                       dispatch(enable(address, token, decimals));
                     }
-                    this.setState({loading: true})
-                    setTimeout(()=>{this.setState({loading: false})}, 10000);
+                    dispatch(tokenApproveStart(symbol));
+                    setTimeout(()=>{
+                      if (approving.get(symbol)) {
+                        //Timeout 30s
+                        dispatch(tokenApproveFinish(symbol));
+                      }
+                    }, 30000);
                   }}
                   key={address}
                   id={address}
-                  loading={this.state.loading}
+                  loading={approving.get(symbol)}
                 />
                 </Tooltip>
               </div>

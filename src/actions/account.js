@@ -186,7 +186,6 @@ export const markOrderLoadingState = (dispatch, isLoading ) => {
       order_loading: isLoading
     }
   });
-  console.log("loading="+isLoading);
 };
 export const markOtherOrderLoadingState = (dispatch, isLoading ) => {
   dispatch({
@@ -342,3 +341,17 @@ const format = json => {
     amount: new BigNumber(json.amount)
   };
 };
+
+export const tokenApproveStart = (tokenSymbol) => {
+  return {
+    type: 'TOKEN_APPROVE_START',
+    payload: { symbol: tokenSymbol }
+  };
+}
+
+export const tokenApproveFinish = (tokenSymbol) => {
+  return {
+    type: 'TOKEN_APPROVE_END',
+    payload: { symbol: tokenSymbol }
+  };
+}
