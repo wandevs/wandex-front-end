@@ -155,10 +155,16 @@ class Header extends React.PureComponent {
                     <Menu>
                       <Menu.Item>
                         <a
-                            href="https://github.com/wanchain/dex-scaffold"
-                            target="_blank"
-                            rel="noopener noreferrer">
-                            <div className={style.menuitem}>{dexTranslations.Documents}</div>
+                          href="https://github.com/wanchain/dex-scaffold"
+                          target="_blank"
+                          rel="noopener noreferrer">
+                          <div className={style.menuitem}>{dexTranslations.Documents}</div>
+                        </a>
+                        <a
+                          href="https://github.com/wandevs/dex-front-end/tree/master/doc/api.md"
+                          target="_blank"
+                          rel="noopener noreferrer">
+                          <div className={style.menuitem}>API</div>
                         </a>
                       </Menu.Item>
                     </Menu>
