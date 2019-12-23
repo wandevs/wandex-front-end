@@ -155,7 +155,7 @@ class Header extends React.PureComponent {
                     <Menu>
                       <Menu.Item>
                         <a
-                          href="https://github.com/wanchain/dex-scaffold"
+                          href="https://github.com/wandevs/dex-front-end"
                           target="_blank"
                           rel="noopener noreferrer">
                           <div className={style.menuitem}>{dexTranslations.Documents}</div>
@@ -164,13 +164,31 @@ class Header extends React.PureComponent {
                           href="https://github.com/wandevs/dex-front-end/tree/master/doc/api.md"
                           target="_blank"
                           rel="noopener noreferrer">
-                          <div className={style.menuitem}>API</div>
+                          <div className={style.menuitem}>{dexTranslations.ApiDocument}</div>
+                        </a>
+                        <a
+                          href="https://github.com/wandevs/dex-front-end/tree/master/doc/api.md"
+                          target="_blank"
+                          rel="noopener noreferrer">
+                          <div className={style.menuitem}>{dexTranslations.UserGuide}</div>
+                        </a>
+                        <a
+                          href="https://github.com/wandevs/dex-smart-contract/releases/tag/v1.1"
+                          target="_blank"
+                          rel="noopener noreferrer">
+                          <div className={style.menuitem}>{dexTranslations.SmartContract}</div>
+                        </a>
+                        <a
+                          href="https://github.com/wandevs/dex-front-end"
+                          target="_blank"
+                          rel="noopener noreferrer">
+                          <div className={style.menuitem}>{dexTranslations.Github}</div>
                         </a>
                       </Menu.Item>
                     </Menu>
                 )}>
               <button className={style.mynav}>
-                {dexTranslations.Settings} <Icon type="down" />
+                {dexTranslations.Help} <Icon type="down" />
               </button>
             </Dropdown>
           </div>
