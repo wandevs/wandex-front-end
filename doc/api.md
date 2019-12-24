@@ -3,8 +3,8 @@
 
 We provide two ways to call our api : **https** and **ws**
 ## https
-| num | action | URL | description | 
-| :------------ | :------------ | :------------ | :------------ | :------------ |
+| num | action | URL | description |
+| :------------ | :------------ | :------------ | :------------ |
 | 1  | GET  | /markets  |  Get market list |
 | 2  | GET |  /markets/:marketID/orderbook | Get all orders for the market with id marketID  |
 | 3  | GET  | /markets/:marketID/trades  | Get all transactions for the market with id marketID  |
