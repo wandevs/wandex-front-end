@@ -1,48 +1,49 @@
-# wandex api document
-[中文版本](https://github.com/wandevs/dex-front-end/blob/master/doc/api_zh.md)
+# wandex api 文档
+[English Version](https://github.com/wandevs/dex-front-end/blob/master/doc/api.md)
 
-We provide two ways to call our api : **https** and **ws**
+我们提供了 api和ws两种方式调用api
+
 ## https
-| num | action | URL | description | 
+| 序号 | 动作 | URL | 说明 | 示例 |
 | :------------ | :------------ | :------------ | :------------ | :------------ |
-| 1  | GET  | /markets  |  Get market list |
-| 2  | GET |  /markets/:marketID/orderbook | Get all orders for the market with id marketID  |
-| 3  | GET  | /markets/:marketID/trades  | Get all transactions for the market with id marketID  |
-| 4 | GET | /markets/:marketID/trades/mine | Get all transactions of mine for the market with id marketID |
-| 5 | GET | /markets/:marketID/candles | Get all candle chart data for the market with id marketID |
-| 6 |  GET | /fees | Estimate the cost of  the given order |
-| 7 |GET | /orders | Get one page pending orders of one user |
-| 8 | GET | /orders/:orderID | Get the order information with id  orderID of one user |
-| 9 | POST | /orders/build | Build an order and api server will response  with the generated orderID of one user |
-|10|POST|/orders| Create an new order with the orderID get from /orders/build of one user |
-|11|DELETE|/orders/:orderID|Cancel the order with id orderID of one user |
-|12|GET|/account/lockedBalances|Get the locked balances of one user |
-|13|GET|/operatormarkets/:operatorID|Get the supported markets of the operator with id operatorID |
-|14|GET|/otherorders | Get one page none pending orders of one user |
+| 1  | GET  | /markets  |  获取交易对列表 |
+| 2  | GET |  /markets/:marketID/orderbook | 获取指定交易对的订单簿  |
+| 3  | GET  | /markets/:marketID/trades  | 获取指定交易对所有交易列表  |
+| 4 | GET | /markets/:marketID/trades/mine | 获取指定交易对指定帐号的所有交易列表 |
+| 5 | GET | /markets/:marketID/candles | 获取最新交易列表(请求中指定交易起止时间，时间间隔最大200s，超过200s的以终止时间向前计算开始时间) |
+| 6 |  GET | /fees | 获取指定交易对的手续费信息 |
+| 7 |GET | /orders | 获取在挂的订单列表 |
+| 8 | GET | /orders/:orderID | 获取指定ID的订单信息 |
+| 9 | POST | /orders/build | 创建并缓存新订单，创建成功后返回订单ID，60s内没有收到订单签名则删除缓存|
+|10|POST|/orders|提交已经build订单签名，签名验证成功后，订单信息将被提交到matching engine|
+|11|DELETE|/orders/:orderID|取消一个订单|
+|12|GET|/account/lockedBalances|获取指定帐号所有代币的锁定额度|
+|13|GET|/operatormarkets/:operatorID|获取某运营商支持的市场|
+|14|GET|/otherorders |获取用户非pending状态的订单|
 
-###API Details
-Exceptions，normally returns:
+###接口用法
+异常，一般返回：
 ```
 {
-  "status":-1,       //(-11,...)
+  "status":-1,
   "desc":"something wrong"
 }
 ```
-Some interface need provide authorization, and the request header should have the authentication field like below:
+有些接口需要请求header中，带授权字段，格式一般如下：
 ```
-Hydro-Authentication： address + "#HYDRO-AUTHENTICATION#" + signature
+Hydro-Authentication： "地址" + "#HYDRO-AUTHENTICATION#" + "签名"
 ```
-or
+或
 ```
-Hydro-Authentication： address + "#HYDRO-AUTHENTICATION"+ "@" + time + "#" + signature
+Hydro-Authentication： "地址" + "#HYDRO-AUTHENTICATION"+ "@" + "时间" + "#" "签名"
 ```
-e.g.：
+例如：
 ```
 "Hydro-Authentication":"0xdb9ff5992f81bedd5a0baf462566fe72f3e95a62#HYDRO-AUTHENTICATION#0x5c7071627ac79b7e224791029c0ea3545cfb7be77479416e37144deb9572d58b1d47eae55b146b5908d395a14233cb36e01eceec767f4f2e31c941f5836b59801c"
 ```
-1. /markets, Deprecated -- maybe unsurpported in the future, http GET method. Get all markets from server database. Please use /operatormarkets/:operatorID instead.
-e.g. : [https://demodex.wandevs.org:43001/markets](https://demodex.wandevs.org:43001/markets)
-If success returns:
+1. /markets，http GET方法，直接访问即可
+比如：访问 [https://demodex.wandevs.org:43001/markets](https://demodex.wandevs.org:43001/markets)
+返回：
 ```
 {
   "status": 0,
@@ -81,9 +82,9 @@ If success returns:
   }
 }
 ```
-2. /markets/:marketID/orderbook, http GET method, Get all orderbook for the market with id marketID
-e.g. : [https://demodex.wandevs.org:43001/markets/RVX-WWAN/orderbook](https://demodex.wandevs.org:43001/markets/RVX-WWAN/orderbook)
-If success returns :
+2. /markets/:marketID/orderbook, GET方法，获取市场上的挂单,直接访问即可
+例如：[https://demodex.wandevs.org:43001/markets/RVX-WWAN/orderbook](https://demodex.wandevs.org:43001/markets/RVX-WWAN/orderbook)
+成功返回：
 ```
 {
   "status": 0,
@@ -131,9 +132,9 @@ If success returns :
   }
 }
 ```
-3. /markets/:marketID/trades, http GET method, get all finished transactions
-e.g. : [https://demodex.wandevs.org:43001/markets/RVX-WWAN/trades](https://demodex.wandevs.org:43001/markets/RVX-WWAN/trades)
-If success returns:
+3. /markets/:marketID/trades GET方法，获取已成交交易
+例如：[https://demodex.wandevs.org:43001/markets/RVX-WWAN/trades](https://demodex.wandevs.org:43001/markets/RVX-WWAN/trades)
+成功返回：
 ```
 {
   "status": 0,
@@ -235,14 +236,14 @@ If success returns:
   }
 }
 ```
-4. /markets/:marketID/trades/mine, http GET method, Get one's transactions of the market with id marketID, should given the authentication field in the request header
-e.g.:
+4. /markets/:marketID/trades/mine GET方法，获取自己在marketID下的交易，header中需要授权头
+例如：
 [https://demodex.wandevs.org:43001/markets/RVX-WWAN/trades/mine](https://demodex.wandevs.org:43001/markets/RVX-WWAN/trades/mine)
-In the request header
+其中header中带上
 ```
 "Hydro-Authentication":"0xdb9ff5992f81bedd5a0baf462566fe72f3e95a62#HYDRO-AUTHENTICATION#0x5c7071627ac79b7e224791029c0ea3545cfb7be77479416e37144deb9572d58b1d47eae55b146b5908d395a14233cb36e01eceec767f4f2e31c941f5836b59801c"
 ```
-If success returns:
+成功返回：
 ```
 {
   "status": 0,
@@ -275,15 +276,15 @@ If success returns:
   }
 }
 ```
-5. /markets/:marketID/candles, http GET method, Get all candle chart data for the market with id marketID
-Required params:
+5. /markets/:marketID/candles，GET方法，
+必须参数:
 ```
-from: timestep in seconds
-to: timestep in seconds
-granularity: time interval in seconds
+from: 时间戳秒
+to: 时间戳秒
+granularity: 时间间隔秒
 ```
-e.g: [https://demodex.wandevs.org:43001/markets/WLRC-WWAN/candles?from=1545537484&to=1577073484&granularity=86400](https://demodex.wandevs.org:43001/markets/WLRC-WWAN/candles?from=1545537484&to=1577073484&granularity=86400)
-If success returns:
+例如：[https://demodex.wandevs.org:43001/markets/WLRC-WWAN/candles?from=1545537484&to=1577073484&granularity=86400](https://demodex.wandevs.org:43001/markets/WLRC-WWAN/candles?from=1545537484&to=1577073484&granularity=86400)
+成功返回：
 ```
 {
   "status": 0,
@@ -310,16 +311,16 @@ If success returns:
   }
 }
 ```
-6. /fees,  http GET method,  Estimate the cost of  the given order,
-Required params:
+6. /fees GET方法，获取某运营商的某市场的费率,
+必须参数：
 ```
-price
-amount
-marketID
-operatorID : one operator's ID
+price:价格
+amount:数量
+marketID:市场ID
+operatorID:运营商ID
 ```
-e.g.：[https://demodex.wandevs.org:43001/fees?price=140&amount=100&marketID=RVX-WWAN&OperatorID=1](https://demodex.wandevs.org:43001/fees?price=140&amount=100&marketID=RVX-WWAN&OperatorID=1)
-If success returns:
+例如：[https://demodex.wandevs.org:43001/fees?price=140&amount=100&marketID=RVX-WWAN&OperatorID=1](https://demodex.wandevs.org:43001/fees?price=140&amount=100&marketID=RVX-WWAN&OperatorID=1)
+成功返回：
 ```
 {
   "status": 0,
@@ -337,16 +338,16 @@ If success returns:
   }
 }
 ```
-7. /orders, http GET method, Get one page pending orders of one user, should given the authentication field in the request header
-Required params:
+7. /orders，GET方法，获取一页自己的等待成交的订单，请求header中，需要授权头字段
+参数：
 ```
-marketID: market id
-page: page number
-status: default is "pending"
-PerPage:page size(default is 20)
+marketID:市场ID
+page：第几页（默认第一页）
+status: 默认获取未成交状态的订单
+PerPage:页的大小(默认20)
 ```
-e.g.[https://demodex.wandevs.org:43001/orders?marketID=RVX-WWAN](https://demodex.wandevs.org:43001/orders?marketID=RVX-WWAN)
-If success returns:
+例如：[https://demodex.wandevs.org:43001/orders?marketID=RVX-WWAN](https://demodex.wandevs.org:43001/orders?marketID=RVX-WWAN)
+成功返回：
 ```
 {
   "status": 0,
@@ -380,11 +381,11 @@ If success returns:
   }
 }
 ```
-8. /otherorders, http GET method, Get one page none pending orders of one user, should given the authentication field in the request header, usage same as above
-9. /orders/nostatus, Deprecated, unsurpported in the future, Get all orders of one user, should given the authentication field in the request header, usage same as above
-10. /orders/:orderID, Get the order information with id  orderID of one user, should given the authentication field in the request header,
-e.g. : [https://demodex.wandevs.org:43001/orders/0xe8b3bbba130184100e3b5aa5236be142008a041d3119aec0b1c4306fbd83aaaf](https://demodex.wandevs.org:43001/orders/0xe8b3bbba130184100e3b5aa5236be142008a041d3119aec0b1c4306fbd83aaaf)
-If success returns:
+8. /otherorders ，GET方法，默认获取非等待成交状态的订单，请求header中，需要授权头字段，用法同上
+9. /orders/nostatus，获取一页全部订单，请求header中，需要授权头字段，用法同上
+10. /orders/:orderID, 获取某个订单的信息，请求header中，需要授权头字段，
+例如：[https://demodex.wandevs.org:43001/orders/0xe8b3bbba130184100e3b5aa5236be142008a041d3119aec0b1c4306fbd83aaaf](https://demodex.wandevs.org:43001/orders/0xe8b3bbba130184100e3b5aa5236be142008a041d3119aec0b1c4306fbd83aaaf)
+成功返回：
 ```
 {
   "status": 0,
@@ -415,21 +416,21 @@ If success returns:
   }
 }
 ```
-11. /orders/build, http POST method. Build order, Build an order and api server will response  with the generated orderID of one user, should given the authentication field in the request header
-Request payload:
+11. /orders/build, POST方法，构造订单，返回订单id（在创建订单的时候会用到POST /orders接口有说明），请求header中，需要授权头字段
+请求体：
 ```
 {
-  "amount": "0.01",
-  "price": "0.44",
-  "side": "buy" or "sell",
+  "amount": "0.01", (数量)
+  "price": "0.44", (价格)
+  "side": "buy" 或者 "sell",
   "expires": 31536000000,
-  "orderType": "limit" or "market",
+  "orderType": "limit"(限价单) 或者 "market"(市价单),
   "marketID": "RVX-WWAN",
-  "operatorID": 1
+  "operatorID": 1 (运营商ID)
 }
 ```
-e.g. : [https://demodex.wandevs.org:43001/orders/build](https://demodex.wandevs.org:43001/orders/build)
-r
+例如：[https://demodex.wandevs.org:43001/orders/build](https://demodex.wandevs.org:43001/orders/build)
+请求体：
 ```
 {
   "amount": "0.01",
@@ -441,7 +442,7 @@ r
   "operatorID": 1
 }
 ```
-If success returns:
+成功返回:
 ```
 {
   "status": 0,
@@ -474,39 +475,39 @@ If success returns:
   }
 }
 ```
-12. /orders, http POST method, create order, need id received from /orders/build, and then signate it with eth_signature method, should given the authentication field in the request header
-Request payload:
+12. /orders，POST方法，创建订单，需要给出/orders/build成功后，收到的Order的id，并签名，请求header中，需要授权头字段
+请求体：
 ```
-  "orderID": Responsed from server interface /orders/build
-  "signature": (eth_signature[64]+27，padded to 32 Bytes) + eth_signature[0~63]
+  "orderID": 从/orders/build获得的order的id
+  "signature": (以太坊签名[64] + 27，并补奇到32位) + 以太坊签名[0~63]
 ```
-e.g. : [https://demodex.wandevs.org:43001/orders](https://demodex.wandevs.org:43001/orders)
-Request payload:
+例如：[https://demodex.wandevs.org:43001/orders](https://demodex.wandevs.org:43001/orders)
+请求体：
 ```
 {
   "orderID": "0xfa74a3902d56ce2cfade530a988de78343a06378f29a1b57cd2afe96fb585b1c",
   "signature": "0x1b00000000000000000000000000000000000000000000000000000000000000360259b3803a1c0c0cbf8e593946197f5248921199216ecb18c65b1f8653eef369780c1a35e1462ea1f87e922726ff8277d433057abbe8b78eea23e51203f2ec"
 }
 ```
-If success returns:
+成功返回：
 ```
 {"status":0,"desc":"success"}
 ```
-13. /orders/:orderID, http DELETE method, should given the authentication field in the request header
-e.g. : [https://demodex.wandevs.org:43001/orders/0xfa74a3902d56ce2cfade530a988de78343a06378f29a1b57cd2afe96fb585b1c](https://demodex.wandevs.org:43001/orders/0xfa74a3902d56ce2cfade530a988de78343a06378f29a1b57cd2afe96fb585b1c)
-If success returns:
+13. /orders/:orderID, DELETE方法，请求header中，需要授权头字段
+例如：[https://demodex.wandevs.org:43001/orders/0xfa74a3902d56ce2cfade530a988de78343a06378f29a1b57cd2afe96fb585b1c](https://demodex.wandevs.org:43001/orders/0xfa74a3902d56ce2cfade530a988de78343a06378f29a1b57cd2afe96fb585b1c)
+成功返回：
 ```
 {"status":0,"desc":"success"}
 ```
-14. /operatormarkets/1 Get the supported markets of the operator with id operatorID
+14. /operatormarkets/1 获取id为1的运营商支持的市场，用法同/markets，返回某个运营商支持的市场
 
 ## ws
 
-|   number |  type  | description  |
+|   序号 |  类型  | 说明  |
 | :------------ | :------------ | :------------ |
-| 1  | level2OrderbookSnapshot  | get from OrderBook first snap  |
-| 2  | level2OrderbookUpdate  | OrderBook update  |
-|  3 |  orderChange |  order changed |
-| 4  | lockedBalanceChange  |  when locked balance been changed |
-| 5  | tradeChange  | trade status changed |
-|  6 | newMarketTrade  | new market trade changed  |
+| 1  | level2OrderbookSnapshot  | OrderBook初次快照获得  |
+| 2  | level2OrderbookUpdate  | OrderBook更新  |
+|  3 |  orderChange |  订单修改 |
+| 4  | lockedBalanceChange  |  锁定金额变化 |
+| 5  | tradeChange  | 交易变化  |
+|  6 | newMarketTrade  | 新的市场交易  |
