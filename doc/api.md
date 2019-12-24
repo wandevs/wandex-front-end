@@ -1,5 +1,6 @@
 # wandex api document
-[中文版本](https://github.com/wandevs/dex-front-end/blob/master/doc/api_zh.md)
+
+[API文档中文版](https://github.com/wandevs/dex-front-end/blob/master/doc/api_zh.md)
 
 We provide two ways to call our api : **https** and **ws**
 ## https
