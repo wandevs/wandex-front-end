@@ -72,9 +72,9 @@ export const formatMarket = (market) => {
   if (quoteFiat && market) {
     extra.volume24h = quoteFiat * Number(market.quoteTokenVolume24h);
   }
-  // TODO
-  extra.high24h = extra.price;
-  extra.low24h = extra.price;
+  //
+  extra.high24h = Number(market.highPrice24h);
+  extra.low24h = Number(market.lowPrice24h);
   market.extra = extra;
   return market;
 }
