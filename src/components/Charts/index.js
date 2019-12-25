@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { DeepChart, TradeChart } from '@wangleiddex/hydro-sdk-charts';
+import '@wangleiddex/hydro-sdk-charts/dist/style.css';
 // import { testData } from './constants'; # we can use testData to show what TradeChart looks like
 import api from '../../lib/api';
 import '../../styles/variables.scss';
@@ -227,7 +228,8 @@ class Charts extends React.Component {
             <TradeChart
               theme="dark"
               data={this.state.data}
-              priceDecimals={5}
+              granularityStr="1d"
+              priceDecimals={4}
               styles={{ background: '#1A1B2C' }}
               clickCallback={result => {
                 console.log('result: ', result);
@@ -247,10 +249,10 @@ class Charts extends React.Component {
             <DeepChart
               baseToken={this.props.currentMarket.baseToken}
               quoteToken={this.props.currentMarket.quoteToken}
-              styles={{ rowBackgroundColor: '#1A1B2C' }}
+              styles={{ rowBackgroundColor: '#1A1B2C', bidColor: '#00d99f' }}
               asks={asks}
               bids={bids}
-              priceDecimals={5}
+              priceDecimals={4}
               theme="dark"
               clickCallback={result => {
                 console.log('result: ', result);

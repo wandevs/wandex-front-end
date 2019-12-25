@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@wangleiddex/hydro-sdk-charts": "0.1.6",
+    "@wangleiddex/hydro-sdk-charts": "0.1.38",
     "antd": "^3.23.3",
     "antd-dayjs-webpack-plugin": "^0.0.6",
     "axios": "^0.19.0",
