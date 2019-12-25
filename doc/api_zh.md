@@ -4,22 +4,22 @@
 我们提供了 api和ws两种方式调用api
 
 ## https
-| 序号 | 动作 | URL | 说明 | 示例 |
-| :------------ | :------------ | :------------ | :------------ | :------------ |
-| 1  | GET  | /markets  |  获取交易对列表 |
-| 2  | GET |  /markets/:marketID/orderbook | 获取指定交易对的订单簿  |
-| 3  | GET  | /markets/:marketID/trades  | 获取指定交易对所有交易列表  |
-| 4 | GET | /markets/:marketID/trades/mine | 获取指定交易对指定帐号的所有交易列表 |
-| 5 | GET | /markets/:marketID/candles | 获取最新交易列表(请求中指定交易起止时间，时间间隔最大200s，超过200s的以终止时间向前计算开始时间) |
-| 6 |  GET | /fees | 获取指定交易对的手续费信息 |
-| 7 |GET | /orders | 获取在挂的订单列表 |
+| 序号 | 动作 | URL | 说明 | 
+| :------------ | :------------ | :------------ | :------------ |
+| 1  | GET  | /markets  |  已废弃，请使用/operatormarkets/:operatorID， 获取交易市场列表 |
+| 2  | GET |  /markets/:marketID/orderbook | 获取id为marketID的市场的订单簿  |
+| 3  | GET  | /markets/:marketID/trades  | 获取id为marketID的市场的所有已匹配的交易列表  |
+| 4 | GET | /markets/:marketID/trades/mine | 获取自己在id为marketID的市场的已匹配交易列表 |
+| 5 | GET | /markets/:marketID/candles | 获取id为marketID的市场的蜡烛图数据(请求中指定交易起止时间，时间间隔最大200s，超过200s的以终止时间向前计算开始时间) |
+| 6 |  GET | /fees | 预估某市场订单的手续费 |
+| 7 |GET | /orders |获取等待成交的订单列表 |
 | 8 | GET | /orders/:orderID | 获取指定ID的订单信息 |
-| 9 | POST | /orders/build | 创建并缓存新订单，创建成功后返回订单ID，60s内没有收到订单签名则删除缓存|
-|10|POST|/orders|提交已经build订单签名，签名验证成功后，订单信息将被提交到matching engine|
+| 9 | POST | /orders/build | 构造新订单，服务器返回订单ID，用户需要在60s内完成签名才能成功创建订单|
+|10|POST|/orders|创建订单，其中订单id为请求/orders/build 返回的订单id。|
 |11|DELETE|/orders/:orderID|取消一个订单|
-|12|GET|/account/lockedBalances|获取指定帐号所有代币的锁定额度|
-|13|GET|/operatormarkets/:operatorID|获取某运营商支持的市场|
-|14|GET|/otherorders |获取用户非pending状态的订单|
+|12|GET|/account/lockedBalances|获取帐号所有代币的锁定额度|
+|13|GET|/operatormarkets/:operatorID|获取某运营商支持的所有市场|
+|14|GET|/otherorders |获取用户非等待成交状态的订单|
 
 ### 接口用法
 异常，一般返回：
