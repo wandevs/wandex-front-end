@@ -2,45 +2,45 @@
 
 [（WanDex介绍中文版）](./wan-dex-introduction-zh.md)
 
-WanDex is a decentralized exchange framework developed by Wanchain community based on the principle of off chain matching and on chain settlement.
+WanDex is a decentralized exchange framework developed by Wanchain community developers and is based on the principle of "off-chain matching and on-chain settlement".
 
-It provides a consumption venue for Wanchain's cross-chain assets, the world's first cross-chain DEX platform.
+It provides real utility value for Wanchain's cross-chained assets, and it is the world's first cross-chain DEX platform.
 
-Support for cross-chain transactions in multiple major currencies, such as BTC, ETH, EOS, and various ERC20 standard tokens on their main chains.
+WanDex supports cross-chain transaction feature for a group of major crypto-currencies, such as BTC, ETH, EOS, and various ERC20 tokens on their mainnet.
 
-Developers and operators can easily and freely create their own DEX on Wanchain based on this framework.
+Developers and operators can easily and freely create their own DEX on Wanchain using WanDex framework.
 
-Customize your DEX rendering based on open source front-end code, adding any preferential policies and other interesting elements.
+You can customize your DEX rendering using open source front-end codes, and add any marketing campaign policy or other interesting features to your DEX.
 
-Multiple DEX can share order book resources for the same trade pair with each other.
+Multiple DEX based on WanDex framework can share a common order book for the same trading pair.
 
-Different DEX can have their own characteristic trading pair independently.
+All DEX based on WanDex framework can have their own unique trading pairs.
 
 
 ![UI](./imgs/img36.png)
 
-The main components of Wan DEX can be divided into three parts:
+Main components of WanDex can be categorized into three groups:
 
-- fully open source [front-end code](https://github.com/wandevs/dex-front-end)
-- fully open source [smart contract source code](https://github.com/wandevs/dex-smart-contract)
-- community controls [chain matching engine](https://demodex.wandevs.org:43001/)
+- Fully open source [front-end code](https://github.com/wandevs/dex-front-end)
+- Fully open source [smart contract source code](https://github.com/wandevs/dex-smart-contract)
+- Open-source community controlled [off-chain matching engine](https://demodex.wandevs.org:43001/)
 
-Its working mode and cooperation mode are shown as follows:
+Its workflow and interaction between components are shown in the following:
 
-![working mode and cooperation](./imgs/img37.png)
+![workflow and interaction between components](./imgs/img37.png)
 
-User assets are controlled in the user's own blockchain wallet and can be searched on the chain at any time.
+User's crypto-asset is controlled by user's own blockchain wallet and can be verified on the blockchain at any time.
 
-Different DEX operators modify their multi-platform pages or apps based on open source front-end code for users to browse and place orders.
+Different DEX operators can modify their web interface or mobile application based on open source front-end code for users to browse and place orders.
 
 After the order is completed in the matching engine, it is settled in a smart contract on the chain.
 
-Only orders authorized by the user signature are transferred at settlement time.
+Only orders authorized by user's signature will trigger asset transfer during settlement phase.
 
-Different DEX can enjoy separate trading pairs, handling fees and Shared order sheets.
+Different DEX can leverage from their own unique trading pairs, transaction fee policy and shared order book.
 
-Its API USES restful mode, real-time change information USES WebSocket interface active notification.
+WanDex's API uses restful mode, real-time information feed uses WebSocket interface to trigger notifications.
 
-The back-end technical framework is shown in the following figure:
+The back-end components framework is shown in the following figure:
 
 ![schematic diagram of back-end frame](./imgs/img38.png)
