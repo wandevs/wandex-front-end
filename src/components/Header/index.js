@@ -155,7 +155,7 @@ class Header extends React.PureComponent {
                     <Menu>
                       <Menu.Item>
                         <a
-                          href="https://github.com/wandevs/dex-front-end"
+                          href="https://github.com/wandevs/dex-front-end/tree/master/doc/wan-dex-introduction.md"
                           target="_blank"
                           rel="noopener noreferrer">
                           <div className={style.menuitem}>{dexTranslations.Documents}</div>
