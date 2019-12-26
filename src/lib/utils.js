@@ -99,3 +99,16 @@ export const getFiatSymbol = (markets) => {
     return "";
   }
 }
+
+export const formatPriceChange = (value, decimals) => {
+  let prefix = "", text = "-", suffix = "%";
+  if (value > 0) {
+    prefix = "+";
+    text = Number(value).toFixed(decimals);
+  } else if (value < 0) {
+    text = Number(value).toFixed(decimals);
+  } else {
+    suffix = "";
+  }
+  return prefix + text + suffix;
+}

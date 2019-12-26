@@ -4,6 +4,7 @@ import style from './styles.scss';
 import { Menu, Dropdown, Button, Icon } from 'antd';
 import Market from '../Market';
 import { formatMarket, getFiatSymbol } from '../../lib/utils';
+import { formatPriceChange } from '../../lib/utils'
 
 const mapStateToProps = state => {
   return {
@@ -49,7 +50,7 @@ class StateBar extends React.PureComponent {
         </div>
         <div className={style.subitem}>
           <span style={{color:"gray"}}> {dexTranslations.Change24h}:</span>
-          <span className={style.subText}>{Number(currentMarket.price24h).toFixed(8)}</span>
+          <span className={style.subText}>{formatPriceChange(currentMarket.price24h, 2)}</span>
         </div>
         <div className={style.subitem}>
           <span style={{color:"gray"}}> {dexTranslations.Volume24h}:</span>

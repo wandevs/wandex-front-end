@@ -1,6 +1,7 @@
 import React from 'react';
 import { Table } from 'antd';
 import './styles.scss';
+import { formatPriceChange } from '../../lib/utils'
 
 function formatPrice(value, market) {
   if (value === 0) {
@@ -14,19 +15,6 @@ function formatPrice(value, market) {
       return text;
     }
   }
-}
-
-function formatPriceChange(value, decimals) {
-  let prefix = "", text = "-", suffix = "%";
-  if (value > 0) {
-    prefix = "+";
-    text = Number(value).toFixed(decimals);
-  } else if (value < 0) {
-    text = Number(value).toFixed(decimals);
-  } else {
-    suffix = "";
-  }
-  return prefix + text + suffix;
 }
 
 class MarketSelector extends React.PureComponent {
