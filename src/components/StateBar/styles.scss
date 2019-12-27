@@ -1,53 +1,42 @@
 @import '../../styles/variables.scss';
+$border-color: hsla(0, 0%, 100%, .1);
 
-.StateBar {
+.stateBar {
+  position: relative;
+  overflow: auto;
+  background: rgba(26,27,44,1);
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+  height: 40px;
+
   :global {
-    .ant-dropdown-menu-item {
-      padding: 0 0;
-
-      &:hover {
-        background-color: $backgroundGrey;
-      }
-    }
-
-    .nav-dropdown-overlay {
-      position: absolute;
-      left: 0px !important;
-      // width: 30%;
+    .dropdown.navbar-nav {
+      margin: auto 0px;
     }
   }
 }
 
-.state-block {
-  height: auto;
-  font-size: 12px;
-  padding-top: 7px;
-  border:1px solid rgb(57, 60, 80);
-  background: linear-gradient(-90deg, rgba(26, 27, 44, 1) 0%, rgba(42, 43, 64, 1) 100%);
-  
-  white-space: normal;
-  word-wrap: break-word;
-  word-break: break-all;
-  overflow: hidden;
+.stateBar:global(::-webkit-scrollbar) {
+  display: none;
 }
 
-.stateButton {
-  height: 21px;
+.stateBarContainer {
+  display: flex;
+  border-top: 1px solid $borderGrey;
+  border-bottom: 1px solid $borderGrey;
   font-size: 12px;
-  border: none;
-  margin-right: 10px;
-  margin-left: 10px;
+  height: 40px;
+  line-height: 40px;
+  white-space: nowrap;
+  padding: 0 12px;
+  width: 100%;
 }
 
 .subitem {
-  margin-right: 10px;
-}
-
-.stateItem {
-  color: white;
-}
-
-.subText {
-  margin: 0 10px 0 10px;
-  color:white;
+  display: flex;
+  text-align: center;
+  padding-right: 24px;
+  -ms-flex-align: center;
+  align-items: center;
 }

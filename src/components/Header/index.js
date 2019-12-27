@@ -219,9 +219,7 @@ class Header extends React.PureComponent {
             {this.renderAccount()}
           </div>
         </div>
-        <div>
-          <StateBar />
-        </div>
+        <StateBar />
       </div>
     );
   }
