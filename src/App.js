@@ -151,7 +151,7 @@ class App extends React.PureComponent {
 
     if (currentPath === mainPagePath) {
       return (
-        <div className="flex-column flex-1 overflow-hidden">
+        <div className="flex-column flex-1">
           <div className="mobileApp flex-column flex-1">{content}</div>
           <div className="flex nav-tabs overflow-auto position-relative">
             <div className="nav-item flex-1 border-top-dark d-inline-block">
