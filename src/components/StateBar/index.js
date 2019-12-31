@@ -24,7 +24,7 @@ class StateBar extends React.PureComponent {
     return (
       <div className={`${style.stateBar} navbar bg-blue navbar-expand-lg`}>
         <div className={style.stateBarContainer}>
-          <img className="navbar-brand" src={require('../../images/hydro.svg')} alt="hydro" />
+          {/* <img className="navbar-brand" src={require('../../images/hydro.svg')} alt="hydro" /> */}
           <div className={style.subitem}>
             <span>{currentMarket.id}</span>
           </div>
