@@ -48,4 +48,4 @@ REACT_APP_NETWORK_ID=3
 REACT_APP_OPERATOR_ID=1
 ```
 
-The REACT_APP_OPERATOR_ID is the operator's id.
+The REACT_APP_OPERATOR_ID is the operator's id. 
