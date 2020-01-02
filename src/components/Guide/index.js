@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, Button } from 'antd';
+import { Modal, Button, Checkbox } from 'antd';
 import styles from './styles.scss';
 import { connect } from 'react-redux';
 
@@ -8,6 +8,14 @@ class Guide extends React.PureComponent {
   }
 
   componentDidUpdate() {
+  }
+
+  onChange = (e) => {
+    if (e.target.checked) {
+      localStorage.setItem('hideGuideModal', Date.now());
+    } else {
+      localStorage.setItem('hideGuideModal', '');
+    }
   }
 
   render() {
@@ -27,6 +35,7 @@ class Guide extends React.PureComponent {
             <div className={styles.textLine}>{ dexTranslations.guideTip3 }</div>
           </div>
           <Button className={ styles.closeButton } onClick={this.props.onCancel}>{dexTranslations.Gotit}!</Button>
+          <Checkbox className={styles.hideModal} onChange={this.onChange}>{ dexTranslations.doNotShowTip }</Checkbox>
         </Modal>
       </div>
     );

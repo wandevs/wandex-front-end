@@ -19,6 +19,7 @@ export default {
   guideTip1: "1) 链接你的钱包到交易所",
   guideTip2: "2) wan转成wwan",
   guideTip3: "3) 授权代币，之后就可以进行交易了！授权和交易都会消耗gas费",
+  doNotShowTip: "12小时内不再显示",
   Orders: "订单",
   Activity: "活动",
   Back: "返回",

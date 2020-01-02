@@ -19,6 +19,7 @@ export default {
   guideTip1: "1) If it is your first time using WRDEX, please click the “Connect” button to link your wallet account to the DEX.",
   guideTip2: "2) In order to be able to trade WAN token in the DEX, first you need to “wrap” the native WAN token into “WWAN”. Please do not “wrap” all your WAN token balance since gas fee will be deducted in native WAN balance.",
   guideTip3: "3) Also please don’t forget to authorize trading of individual tokens by clicking on the switch beside it, this step will also consume a little amount of gas fee.",
+  doNotShowTip: "Don't show in the next 12 hours",
   Orders: "Orders",
   Activity: "Activity",
   Back: "Back",

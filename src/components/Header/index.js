@@ -24,6 +24,8 @@ const mapStateToProps = state => {
   };
 };
 
+const forbideGuideWindowPeriod = 12 * 3600 * 1000;
+
 export const mainPagePath = '/main';
 export const orderDetailPagePath = '/ordersdetail';
 export const activityPagePath = '/activity';
@@ -40,7 +42,15 @@ class Header extends React.PureComponent {
     const { address, dispatch } = this.props;
     dispatch(loadActivity());
     const hydroAuthentication = loadAccountHydroAuthentication(address);
-    setTimeout(this.openGuideModel, 50);
+    const hideGuide = localStorage.getItem('hideGuideModal');
+    if (!hideGuide) {
+      setTimeout(this.openGuideModel, 50);
+    } else {
+      if ((Date.now() - Number(hideGuide)) > forbideGuideWindowPeriod) {
+        setTimeout(this.openGuideModel, 50);
+        localStorage.setItem('hideGuideModal', '');
+      }
+    }
     if (hydroAuthentication) {
       dispatch(login(address));
       setTimeout(this.openBalanceModel, 0);
