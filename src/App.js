@@ -153,7 +153,7 @@ class App extends React.PureComponent {
       return (
         <div className="flex-column flex-1">
           <div className="mobileApp flex-column flex-1">{content}</div>
-          <div className="flex nav-tabs overflow-auto position-relative">
+          <div className="flex nav-tabs mobileFooter position-sticky">
             <div className="nav-item flex-1 border-top-dark d-inline-block">
               <div
                 onClick={() => this.setState({ mobileTab: 'trade' })}
