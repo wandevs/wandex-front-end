@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { updateCurrentMarket } from '../../actions/markets';
 import QuoteFilter from './QuoteFilter';
 import MarketSelector from './MarketSelector';
-import './styles.scss';
+import style from './styles.scss';
 import { getFiatCode } from '../../lib/utils';
 
 const ALL_QUOTE_TOKENS = [
@@ -73,31 +73,6 @@ class Market extends React.PureComponent {
     };
   }
 
-  render() {
-    const { dexTranslations } = this.props;
-    return (
-      <div>
-        <div style={{background: "$backgroundGrey"}}>
-          <QuoteFilter
-            quoteTokens={this.state.quoteTokens}
-            selectedToken={this.state.selectedQuoteToken}
-            onSelectToken={token => this.selectQuoteToken(token)}
-            searchKey={this.state.searchKey}
-            onSearch={key => this.changeSearchKey(key)}
-          />
-        </div>
-        <div>
-          <MarketSelector
-            markets={this.state.candidateMarkets}
-            fiatUnit={this.state.fiatUnit}
-            onSelectMarket={(market) => this.selectMarket(market)}
-            dexTranslations={dexTranslations}
-          />
-        </div>
-      </div>
-    );
-  }
-
   selectQuoteToken(token) {
     this.setState({selectedQuoteToken: token});
     this.setState({candidateMarkets: this.filterMarkets(this.props.markets, token, this.state.searchKey)});
@@ -138,6 +113,27 @@ class Market extends React.PureComponent {
       }
       return true;
     })
+  }
+  
+  render() {
+    const { dexTranslations } = this.props;
+    return (
+      <div className={style.marketContainer}>
+        <QuoteFilter
+          quoteTokens={this.state.quoteTokens}
+          selectedToken={this.state.selectedQuoteToken}
+          onSelectToken={token => this.selectQuoteToken(token)}
+          searchKey={this.state.searchKey}
+          onSearch={key => this.changeSearchKey(key)}
+        />
+        <MarketSelector
+          markets={this.state.candidateMarkets}
+          fiatUnit={this.state.fiatUnit}
+          onSelectMarket={(market) => this.selectMarket(market)}
+          dexTranslations={dexTranslations}
+        />
+      </div>
+    );
   }
 }
 

@@ -1,12 +1,12 @@
 import React from 'react';
 import Selector from '../Selector';
 import { Input, Icon } from 'antd';
-import './styles.scss';
+import style from './styles.scss';
 
 class QuoteFilter extends React.PureComponent {
   render() {
     return (
-      <div>
+      <div className={style.marketHeader}>
         <div className="flex">
           <Selector
             options={this.props.quoteTokens}
@@ -18,7 +18,7 @@ class QuoteFilter extends React.PureComponent {
           <Input
             placeholder="Search"
             value={this.props.searchKey}
-            prefix={<Icon type="search" style={{color: 'white'}} />}
+            suffix={<Icon type="search" className={style.quoteSearchIcon} />}
             onChange={e => this.props.onSearch(e.target.value)}
             onClick={e => e.stopPropagation()}
             onPressEnter={e => e.stopPropagation()}

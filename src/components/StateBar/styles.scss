@@ -1,5 +1,7 @@
 @import '../../styles/variables.scss';
 $border-color: hsla(0, 0%, 100%, .1);
+$overlay-max-width: 500px;
+$overlay-top: 110px;
 
 .stateBar {
   position: relative;
@@ -21,6 +23,36 @@ $border-color: hsla(0, 0%, 100%, .1);
   display: none;
 }
 
+.nav-dropdown-overlay {
+  left: 0px !important;
+  top: $overlay-top !important;
+  width: 100%;
+  max-width: $overlay-max-width;
+  height: calc(100vh - 110px);
+
+  :global {
+    .ant-dropdown-menu {
+      background-color: #151625;
+      height: 100%;
+      padding: 0px;
+    }
+
+    .ant-dropdown-menu-item {
+      height: 100%;
+      padding: 0px;
+    }
+
+    .ant-dropdown-menu-item:hover {
+      background-color: transparent;
+    }
+  }
+}
+
+.nav-dropdown-overlay::before {
+  content: '' !important;
+  display: none;
+}
+
 .stateBarContainer {
   display: flex;
   border-top: 1px solid $borderGrey;
@@ -39,4 +71,29 @@ $border-color: hsla(0, 0%, 100%, .1);
   padding-right: 24px;
   -ms-flex-align: center;
   align-items: center;
+}
+
+.stateButton {
+  background-color: transparent !important;
+  border: none;
+
+  :global {
+    span {
+      color: gray;
+    }
+  }
+}
+
+.subText {
+  margin: 0 10px 0 10px;
+  color: white;
+  margin-right: 20px;
+  font-size: 16px;
+  font-family: 'HelveticaNeue';
+  word-break: keep-all;
+
+  span:last-child {
+    font-size: 12px;
+    opacity: 0.5;
+  }
 }

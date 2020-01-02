@@ -31,7 +31,7 @@ class StateBar extends React.PureComponent {
           <div className={`${style.subitem} dropdown navbar-nav`}>
             <Dropdown
               trigger={["click"]}
-              overlayClassName="nav-dropdown-overlay"
+              overlayClassName={style['nav-dropdown-overlay']}
               overlay={(
                 <Menu>
                   <Menu.Item>
