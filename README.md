@@ -31,3 +31,19 @@ This is the front end of the WanDevs dex project. It's developed using react. Th
 ## Start with a docker image
 
 	docker-compose up -d
+
+## How to run
+
+You need to set some environment variables to run it.
+
+The testnet version is shown as below:
+```
+REACT_APP_API_URL=https://demodex.wandevs.org:43001
+REACT_APP_WS_URL=wss://demodex.wandevs.org:43002
+REACT_APP_NODE_URL=https://demodex.wandevs.org:48545
+REACT_APP_HYDRO_PROXY_ADDRESS=0x9e57b9f1d836ff1701e441a619cbaad7fc8863d3
+REACT_APP_HYDRO_TOKEN_ADDRESS=0x90fb6abca9aa83044abcdaa6f0bf2fb3d63fa45a
+REACT_APP_WWAN_TOKEN_ADDRESS=0x916283cc60fdaf05069796466af164876e35d21f
+REACT_APP_NETWORK_ID=3
+REACT_APP_OPERATOR_ID=1
+```
