@@ -22,14 +22,14 @@
         }
     }
 
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 767px) {
         :global {
             .collapse {
                 position: absolute;
                 top: 100%;
                 left: 0;
                 right: 0;
-                background: #535ec3;
+                background: #251E46;
                 z-index: 1;
 
                 :local(.item) {
@@ -44,7 +44,7 @@
         }
     }
 
-    @media screen and (min-width: 767px) {
+    @media screen and (min-width: 768px) {
         :global {
             .dropdown-toggle::after {
                 margin-left: 12px;

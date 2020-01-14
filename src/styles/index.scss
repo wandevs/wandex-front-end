@@ -262,9 +262,12 @@ table {
 
 .mobileApp {
     min-height: 600px;
+    margin-bottom: 52px;
 }
 
 .mobileFooter {
     bottom: 0px;
     overflow-y: hidden;
+    width: 100%;
+    max-height: 50px;
 }
