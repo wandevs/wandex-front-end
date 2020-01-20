@@ -36,15 +36,28 @@ function getExplorer() {
   }
 }
 
+
+
 if (getExplorer() === 'ie') {
   alert('To ensure your asset security, Chrome, Firefox or Safari is recommended.');
 } else {
-  ReactDOM.render(
-    <Provider store={store}>
-      <App />
-    </Provider>,
-    document.getElementById('root')
-  );
+  document.onreadystatechange = () => {
+    console.log('state:', document.readyState, Date.now());
+    if (document.readyState === 'complete' || document.readyState === 'loaded') {
+      ReactDOM.render(
+        <Provider store={store}>
+          <App />
+        </Provider>,
+        document.getElementById('root')
+      );
+    } else {
+      ReactDOM.render(
+        <div><div>Haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div><div>Haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div><div>Haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div><div>Haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div><div>Haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div><div>Haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div><div>Haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div></div>,
+        document.getElementById('root')
+      );
+    }
+  };
+  
 }
 
 // If you want your app to work offline and load faster, you can change
