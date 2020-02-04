@@ -41,8 +41,17 @@
     }
 
     #progress .progress-bar {
-      animation: loading 60s;
+      /* animation: loading 60s; */
       background: linear-gradient(90deg, #414edd 0%, #29307c 100%);
+    }
+
+    #progress .progress-bar.loading {
+      animation: loading 60s;
+      /* background: linear-gradient(90deg, #414edd 0%, #29307c 100%); */
+    }
+
+    #progress .progress-bar.full {
+      width: 100% !important;
     }
 
     #progress .loading-tip {
@@ -70,7 +79,7 @@
   <script>
     document.getElementById('progress').innerHTML = `
         <div class="progress progress-bar-container">
-          <div class="progress-bar" style="width: 99%;">
+          <div class="progress-bar loading" style="width: 99%;">
             <span class="loading-text">Loading...</span>
           </div>
         </div>
@@ -79,7 +88,12 @@
         </div>
       `;
     window.onload = function () {
-      document.body.removeChild(document.getElementById('progress'));
+      let bar = document.querySelector('#progress .progress-bar');
+      bar.classList.remove('loading');
+      bar.classList.add('full');
+      setTimeout(() => {
+        document.body.removeChild(document.getElementById('progress'));
+      }, 2000);
     }
   </script>
 </body>
