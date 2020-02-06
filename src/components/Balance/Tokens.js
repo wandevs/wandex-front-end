@@ -93,7 +93,7 @@ class Tokens extends React.PureComponent {
           let fiat = 0;
           if(this.fiats) {
             fiat = (this.fiats[token]||0)*availableBalance;
-            if (fiat < 0.01 && token !== 'WWAN') {
+            if (fiat < 0.01 && token !== 'WWAN' && availableBalance === 0) {
               return null;
             }
           }
