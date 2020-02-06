@@ -166,13 +166,13 @@ class OrderBook extends React.Component {
     let askIndex = 0;
 
     return (
-      <div className="orderbook flex-column flex-1 panelBg">
+      <div className="orderbook flex-column flex-1 overflow-auto panelBg">
         <div className="flex header text-secondary">
           <div className="col-4 text-right">{dexTranslations.Amount}({currentMarket.baseToken})</div>
           <div className="col-4 text-right">{dexTranslations.Price}({currentMarket.quoteToken})</div>
           <div className="col-4 text-right">{dexTranslations.Total}({currentMarket.quoteToken})</div>
         </div>
-        <div className="flex-column flex-1">
+        <div className="flex-column flex-1 overflow-auto">
           <div className="asks customBid flex-column flex-column-reverse flex-2 overflow-hidden">
             {asks
               .slice(-20)
