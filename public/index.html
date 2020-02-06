@@ -92,8 +92,10 @@
       bar.classList.remove('loading');
       bar.classList.add('full');
       setTimeout(() => {
-        document.body.removeChild(document.getElementById('progress'));
-      }, 2000);
+        if (document.getElementById('progress')) {
+          document.body.removeChild(document.getElementById('progress'));
+        }
+      }, 1500);
     }
   </script>
 </body>

@@ -42,7 +42,6 @@ if (getExplorer() === 'ie') {
   alert('To ensure your asset security, Chrome, Firefox or Safari is recommended.');
 } else {
   document.onreadystatechange = () => {
-    console.log('state:', document.readyState, Date.now());
     if (document.readyState === 'complete' || document.readyState === 'loaded') {
       ReactDOM.render(
         <Provider store={store}>
@@ -52,7 +51,7 @@ if (getExplorer() === 'ie') {
       );
     } else {
       ReactDOM.render(
-        <div><div>Haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div><div>Haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div><div>Haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div><div>Haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div><div>Haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div><div>Haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div><div>Haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div></div>,
+        <div>Loading...</div>,
         document.getElementById('root')
       );
     }
