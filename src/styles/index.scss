@@ -262,7 +262,8 @@ table {
 
 .mobileApp {
     min-height: 600px;
-    margin-bottom: 52px;
+    // margin-bottom: 52px;
+    padding-bottom: 56px;
 }
 
 .mobileFooter {
@@ -270,4 +271,9 @@ table {
     overflow-y: hidden;
     width: 100%;
     max-height: 50px;
+}
+
+.form {
+    margin: 0px;
+    padding: 0px 24px;
 }
