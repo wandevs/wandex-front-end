@@ -466,31 +466,57 @@ class Trade extends React.PureComponent {
   }
 
   updateAmount(amountPercent) {
-    const { currentMarket, side, price,  change, quoteTokenBalance, baseTokenBalance } = this.props;
-    if (side === 'sell') {
-      const total = toUnitAmount(baseTokenBalance, currentMarket.baseTokenDecimals);
-      const decimal = currentMarket.amountDecimals;
-      if (total <= 0) {
-        return;
-      }
-      change('amount', (new BigNumber(total * amountPercent / 100.0)).toFixed(decimal, BigNumber.ROUND_DOWN));
-    } else {
-      const total = toUnitAmount(quoteTokenBalance, currentMarket.quoteTokenDecimals).toFixed(currentMarket.priceDecimals, BigNumber.ROUND_DOWN);
-      const decimal = currentMarket.amountDecimals;
-      if (total <= 0) {
-        return;
-      }
-      if (amountPercent <= 75) {
-        change('amount', (total * amountPercent / 100.0 / price).toFixed(decimal));
+    const { currentMarket, side, price,  change, quoteTokenBalance, baseTokenBalance, orderType } = this.props;
+
+    if (orderType === 'limit') {
+      if (side === 'sell') {
+        const total = toUnitAmount(baseTokenBalance, currentMarket.baseTokenDecimals);
+        const decimal = currentMarket.amountDecimals;
+        if (total <= 0) {
+          return;
+        }
+        change('amount', (new BigNumber(total * amountPercent / 100.0)).toFixed(decimal, BigNumber.ROUND_DOWN));
       } else {
-        let maxAmount = new BigNumber(total * amountPercent / 100.0 / price);
-        maxAmount = maxAmount.toFixed(decimal, BigNumber.ROUND_DOWN);
-        const fee = this.getFeeByAmount(new BigNumber(maxAmount));
-        if(maxAmount > fee/price) {
-          change('amount', (new BigNumber(maxAmount - fee / price)).toFixed(decimal, BigNumber.ROUND_DOWN));
+        const total = toUnitAmount(quoteTokenBalance, currentMarket.quoteTokenDecimals).toFixed(currentMarket.priceDecimals, BigNumber.ROUND_DOWN);
+        const decimal = currentMarket.amountDecimals;
+        if (total <= 0) {
+          return;
+        }
+        if (amountPercent <= 75) {
+          change('amount', (total * amountPercent / 100.0 / price).toFixed(decimal));
+        } else {
+          let maxAmount = new BigNumber(total * amountPercent / 100.0 / price);
+          maxAmount = maxAmount.toFixed(decimal, BigNumber.ROUND_DOWN);
+          const fee = this.getFeeByAmount(new BigNumber(maxAmount));
+          if(maxAmount > fee/price) {
+            change('amount', (new BigNumber(maxAmount - fee / price)).toFixed(decimal, BigNumber.ROUND_DOWN));
+          }
+        }
+      }
+    } else {
+      if (side === 'sell') {
+        const total = toUnitAmount(baseTokenBalance, currentMarket.baseTokenDecimals);
+        const decimal = currentMarket.amountDecimals;
+        if (total <= 0) {
+          return;
+        }
+        change('amount', (new BigNumber(total * amountPercent / 100.0)).toFixed(decimal, BigNumber.ROUND_DOWN));
+      } else {
+        const total = toUnitAmount(quoteTokenBalance, currentMarket.quoteTokenDecimals);
+        const decimal = currentMarket.amountDecimals;
+        if (total <= 0) {
+          return;
+        }
+
+        if (amountPercent <= 75) {
+          change('amount', (new BigNumber(total * amountPercent / 100.0)).toFixed(decimal, BigNumber.ROUND_DOWN));
+        } else {
+          const fee = this.getFeeByAmount(new BigNumber(total));
+          change('amount', (new BigNumber(total * amountPercent / 100.0 - fee)).toFixed(decimal, BigNumber.ROUND_DOWN));
         }
       }
     }
+    
   }
 
   getFeeByAmount(amount) {
