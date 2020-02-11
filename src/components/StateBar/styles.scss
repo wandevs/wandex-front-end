@@ -2,6 +2,7 @@
 $border-color: hsla(0, 0%, 100%, .1);
 $overlay-max-width: 500px;
 $overlay-top: 110px;
+$overlay-top-mobile: 90px;
 
 .stateBar {
   position: relative;
@@ -45,6 +46,12 @@ $overlay-top: 110px;
     .ant-dropdown-menu-item:hover {
       background-color: transparent;
     }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .nav-dropdown-overlay {
+    top: $overlay-top-mobile !important;
   }
 }
 

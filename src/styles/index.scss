@@ -49,19 +49,19 @@ body {
 }
 
 .border-right-dark {
-    border-right: 0.5px solid $borderGrey;
+    border-right: 1px solid $borderGrey;
 }
 
 .border-left-dark {
-    border-left: 0.5px solid $borderGrey;
+    border-left: 1px solid $borderGrey;
 }
 
 .border-top-dark {
-    border-top: 0.5px solid $borderGrey;
+    border-top: 1px solid $borderGrey;
 }
 
 .border-bottom-dark {
-    border-bottom: 0.5px solid $borderGrey;
+    border-bottom: 1px solid $borderGrey;
 }
 
 .panelBg {
@@ -233,7 +233,7 @@ table {
         font-size: 14px;
         padding: 0 12px;
         height: 46px;
-        border-bottom: 0.5px solid $borderGrey;
+        border-bottom: 1px solid $borderGrey;
         display: flex;
         align-items: center;
         background: $title;

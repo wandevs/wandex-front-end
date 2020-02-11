@@ -323,7 +323,7 @@ class App extends React.PureComponent {
             </div>
           </div>
           <div className="flex-column">
-            <div className="grid border-left-dark flex-1">
+            <div className="grid flex-1">
               <div className="title flex align-items-center">
                 <div className="titleLogo"/>
                 <div>{dexTranslations.tradeHistory}</div>

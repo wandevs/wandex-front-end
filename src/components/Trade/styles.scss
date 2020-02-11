@@ -105,6 +105,13 @@
         left: 193px;
     }
 
+    @media screen and (max-width: 767px) {
+        .best-buttons {
+            position: absolute;
+            left: 155px;
+        }
+    }
+
     .best-button {
         width:71px;
         height:24px;

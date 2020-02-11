@@ -1,4 +1,6 @@
 @import '../../styles/variables.scss';
+$header-height: 70px;
+$header-height-mobile: 50px;
 
 .Header {
     :global {
@@ -100,8 +102,14 @@
 } */
 
 .headerHeight {
-    height: 70px!important;
+    height: $header-height !important;
 }
+
+@media screen and (max-width: 767px) {
+    .headerHeight {
+        height: $header-height-mobile !important;
+    }
+  }
 
 .mynav {
     background-color: transparent;
@@ -126,6 +134,24 @@
 
     :global(.anticon) {
         vertical-align: middle;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .mynav {
+        font-size: 1.3rem;
+    }
+}
+
+@media screen and (max-width: 1023px) and (min-width: 768px) {
+    .mynav {
+        font-size: 1.1rem;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .mynav {
+        font-size: 1rem;
     }
 }
 
