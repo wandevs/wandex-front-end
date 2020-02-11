@@ -20,7 +20,7 @@ export const trade = (side, price, amount, orderType = 'limit', expires = 86400 
           const state = getState();
           const currentMarket = state.market.getIn(['markets', 'currentMarket']);
           let token = (side === 'buy')? currentMarket.quoteToken : currentMarket.baseToken;
-          window.alertAntd({tip: 'Please authorize the trading of ' + token + ' token by turning on the corresponding switch in "Wallet-Tokens" panel'});
+          window.alertAntd({tip: 'Please authorize the trading of ' + token + ' token by turning on the corresponding switch in "Balance/Wallet" panel'});
         } else {
           window.alertAntd(result.desc);
         }
