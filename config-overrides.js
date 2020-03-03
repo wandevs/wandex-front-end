@@ -69,12 +69,6 @@ module.exports = override(
         test: /[\\/]node_modules[\\/](@wlchn)[\\/]/,
         priority: -11,
       },
-      ethers: {
-        name: 'ethers',
-        chunks: 'all',
-        test: /[\\/]node_modules[\\/](ethers-wan)[\\/]/,
-        priority: -11,
-      },
       wansdk: {
         name: 'wansdk',
         chunks: 'all',
