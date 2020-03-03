@@ -1,4 +1,4 @@
-const { override, fixBabelImports, addLessLoader, addWebpackModuleRule, addWebpackPlugin } = require('customize-cra');
+const { override, fixBabelImports, addLessLoader, addWebpackModuleRule, addWebpackPlugin, setWebpackOptimizationSplitChunks } = require('customize-cra');
 const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin');
 
 module.exports = override(
@@ -41,4 +41,70 @@ module.exports = override(
   }),
 
   addWebpackPlugin(new AntdDayjsWebpackPlugin()),
+  setWebpackOptimizationSplitChunks({
+    chunks: 'async',
+    minSize: 30000,
+    maxSize: 0,
+    minChunks: 1,
+    maxAsyncRequests: 20,
+    maxInitialRequests: 10,
+    automaticNameDelimiter: '~',
+    name: true,
+    cacheGroups: {
+      antdesign: {
+        name: 'antdesign',
+        chunks: 'all',
+        test: /[\\/]node_modules[\\/](@ant-design|antd)[\\/]/,
+        priority: -10,
+      },
+      ethers: {
+        name: 'ethers',
+        chunks: 'all',
+        test: /[\\/]node_modules[\\/](ethers-wan)[\\/]/,
+        priority: -11,
+      },
+      wlchn: {
+        name: 'wlchn',
+        chunks: 'all',
+        test: /[\\/]node_modules[\\/](@wlchn)[\\/]/,
+        priority: -11,
+      },
+      ethers: {
+        name: 'ethers',
+        chunks: 'all',
+        test: /[\\/]node_modules[\\/](ethers-wan)[\\/]/,
+        priority: -11,
+      },
+      wansdk: {
+        name: 'wansdk',
+        chunks: 'all',
+        test: /[\\/]node_modules[\\/](ethers-wan)[\\/]/,
+        priority: -11,
+      },
+      mimedb: {
+        name: 'mimedb',
+        chunks: 'all',
+        test: /[\\/]node_modules[\\/](mime-db)[\\/]/,
+        priority: -11,
+      },
+      psl: {
+        name: 'psl',
+        chunks: 'all',
+        test: /[\\/]node_modules[\\/](psl)[\\/]/,
+        priority: -11,
+      },
+      immutable: {
+        name: 'psl',
+        chunks: 'all',
+        test: /[\\/]node_modules[\\/](immutable)[\\/]/,
+        priority: -11,
+      },
+      react: {
+        name: 'psl',
+        chunks: 'all',
+        test: /[\\/]node_modules[\\/](react-dom|redux-form|core-js|ajv)[\\/]/,
+        priority: -11,
+      }
+    },
+   }),
 );
