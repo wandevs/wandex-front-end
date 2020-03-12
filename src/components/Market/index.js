@@ -17,7 +17,8 @@ const ALL_QUOTE_TOKENS = [
 const STABLE_TOKEN = [
   'WUSDC', // TODO, ignore others
   'WGUSD',
-  'WTUSD'
+  'WTUSD',
+  'WUSDT'
 ]
 
 function formatMarket(market) {

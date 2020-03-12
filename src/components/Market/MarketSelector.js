@@ -56,7 +56,7 @@ class MarketSelector extends React.PureComponent {
         defaultSortOrder: 'descend',
         sorter: (a, b) => a.amount24h - b.amount24h,
         sortDirections: ['descend', 'ascend'],
-        render: (value) => { return value.toFixed(2) },
+        render: (value) => { return value && value.toFixed(2) },
         // width: 120,
         // flex: 1,
         align: 'right',
