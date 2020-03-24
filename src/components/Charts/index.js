@@ -216,6 +216,7 @@ class Charts extends React.Component {
         amount: priceLevel[1].toString()
       };
     });
+    console.log("data:", this.state.data);
     return (
       <>
         <div className="title flex">
@@ -228,7 +229,7 @@ class Charts extends React.Component {
             <TradeChart
               theme="dark"
               data={this.state.data}
-              granularityStr="1d"
+              // granularityStr="1d"
               priceDecimals={4}
               styles={{ background: '#1A1B2C' }}
               clickCallback={result => {
