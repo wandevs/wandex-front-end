@@ -67,6 +67,9 @@ class Tokens extends React.PureComponent {
       if(!this.fiats[markets[i].baseToken]) {
         this.fiats[markets[i].baseToken] = markets[i].baseTokenFiat['USD'] || 0;
       }
+      if(!this.fiats[markets[i].quoteToken]) {
+        this.fiats[markets[i].quoteToken] = markets[i].quoteTokenFiat['USD'] || 0;
+      }
     }
   }
 
