@@ -1,8 +1,8 @@
 {
-    "fast": 1800,
-    "fastest": 1800,
-    "safeLow": 1800,
-    "average": 1800,
+    "fast": 10,
+    "fastest": 10,
+    "safeLow": 10,
+    "average": 10,
     "block_time": 5,
     "blockNum": 9134581,
     "speed": 0.9973659593053673,
