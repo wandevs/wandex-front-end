@@ -164,36 +164,46 @@ class Header extends React.PureComponent {
                 overlay={(
                     <Menu>
                       <Menu.Item>
-                        <a
-                          href="https://github.com/wandevs/dex-front-end/tree/master/doc/wan-dex-introduction.md"
-                          target="_blank"
-                          rel="noopener noreferrer">
+                        <div
+                          onClick={()=>{window.open('https://github.com/wandevs/dex-front-end/tree/master/doc/wan-dex-introduction.md');}}
+                          // href="/"
+                          // target="_blank"
+                          // rel="noopener noreferrer"
+                          >
                           <div className={style.menuitem}>{dexTranslations.Documents}</div>
-                        </a>
-                        <a
-                          href="https://github.com/wandevs/dex-front-end/tree/master/doc/api.md"
-                          target="_blank"
-                          rel="noopener noreferrer">
+                        </div>
+                        <div
+                          onClick={()=>{window.open('https://github.com/wandevs/dex-front-end/tree/master/doc/api.md');}}
+                          // href="https://github.com/wandevs/dex-front-end/tree/master/doc/api.md"
+                          // target="_blank"
+                          // rel="noopener noreferrer"
+                          >
                           <div className={style.menuitem}>{dexTranslations.ApiDocument}</div>
-                        </a>
-                        <a
-                          href="https://github.com/wandevs/dex-front-end/tree/master/doc/user-guide.md"
-                          target="_blank"
-                          rel="noopener noreferrer">
+                        </div>
+                        <div
+                          onClick={()=>{window.open('https://github.com/wandevs/dex-front-end/tree/master/doc/user-guide.md');}}
+                          // href="https://github.com/wandevs/dex-front-end/tree/master/doc/user-guide.md"
+                          // target="_blank"
+                          // rel="noopener noreferrer"
+                          >
                           <div className={style.menuitem}>{dexTranslations.UserGuide}</div>
-                        </a>
-                        <a
-                          href="https://github.com/wandevs/dex-smart-contract/releases/tag/v1.1"
-                          target="_blank"
-                          rel="noopener noreferrer">
+                        </div>
+                        <div
+                          onClick={()=>{window.open('https://github.com/wandevs/dex-smart-contract/releases/tag/v1.1');}}
+                          // href="https://github.com/wandevs/dex-smart-contract/releases/tag/v1.1"
+                          // target="_blank"
+                          // rel="noopener noreferrer"
+                          >
                           <div className={style.menuitem}>{dexTranslations.SmartContract}</div>
-                        </a>
-                        <a
-                          href="https://github.com/wandevs/dex-front-end"
-                          target="_blank"
-                          rel="noopener noreferrer">
+                        </div>
+                        <div
+                          onClick={()=>{window.open('https://github.com/wandevs/dex-front-end');}}
+                          // href="https://github.com/wandevs/dex-front-end"
+                          // target="_blank"
+                          // rel="noopener noreferrer"
+                          >
                           <div className={style.menuitem}>{dexTranslations.Github}</div>
-                        </a>
+                        </div>
                       </Menu.Item>
                     </Menu>
                 )}>
