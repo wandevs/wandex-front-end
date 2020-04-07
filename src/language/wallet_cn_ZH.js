@@ -51,9 +51,9 @@ export default {
   inputPath: "输入一个钱包PATH",
   installMetamask: "安装WanMask",
   installMetamaskDesc:
-    'WanMask浏览器扩展目前在谷歌Chrome上运行。对于Safari用户，请尝试其他钱包选项。 <br/> 从谷歌Chrome插件商店安装WanMask <a target="_blank" rel="noopener noreferrer" href="https://chrome.google.com/webstore/detail/wanmask/omnkcjdohbnjfjmlaiboojplahajnenj?utm_source=chrome-ntp-icon">WanMask安装</a>',
+    'WanMask浏览器扩展目前在谷歌Chrome上运行。对于Safari用户，请尝试其他钱包选项。 <br/> 从谷歌Chrome插件商店安装WanMask <a target="_blank" rel="noopener noreferrer" style="text-decoration: none;color: lightblue;" href="https://chrome.google.com/webstore/detail/wanmask/omnkcjdohbnjfjmlaiboojplahajnenj?utm_source=chrome-ntp-icon">WanMask安装</a>',
   connectLedgerDesc:
-    '请确认在设备设置中启用了“浏览器支持”和“合约数据”选项. <br/> 如果仍然有问题，请尝试重新连接您的Ledger或浏览Ledger帮助页面. <a target="_blank" rel="noopener noreferrer" href="https://support.ddex.io/hc/en-us/articles/360001576533">Ledger Support</a>',
+    '请确认在设备设置中启用了“浏览器支持”和“合约数据”选项. <br/> 如果仍然有问题，请尝试重新连接您的Ledger或浏览Ledger帮助页面. <a target="_blank" rel="noopener noreferrer" style="text-decoration: none;color: lightblue;" href="https://support.ddex.io/hc/en-us/articles/360001576533">Ledger Support</a>',
   connectTrezorDesc:
-    '安装由trezor.io提供的Trezor bridge驱动软件 <a target="_blank" rel="noopener noreferrer" href="https://wallet.trezor.io/#/bridge" style={color:"white!important"}>Trezor Bridge Download</a> <br/> 将你的Trezor钱包直接连接到你的电脑上。'
+    '安装由trezor.io提供的Trezor bridge驱动软件 <a target="_blank" rel="noopener noreferrer" href="https://wallet.trezor.io/#/bridge" style="text-decoration: none;color: lightblue;">Trezor Bridge Download</a> <br/> 将你的Trezor钱包直接连接到你的电脑上。'
 };
