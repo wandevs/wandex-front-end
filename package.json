@@ -27,7 +27,7 @@
     "redux-form": "^8.1.0",
     "redux-thunk": "^2.3.0",
     "source-map-explorer": "^2.3.1",
-    "wan-dex-sdk-wallet": "^0.0.131"
+    "wan-dex-sdk-wallet": "0.0.136"
   },
   "scripts": {
     "start": "react-app-rewired start",
