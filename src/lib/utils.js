@@ -55,7 +55,7 @@ export const truncateDecimals = (input, decimals) => {
 export const formatMarket = (market) => {
   let extra = {isExternalPrice: false};
   // fiat
-  let baseFiat = market.baseTokenFiat[Object.keys(market.baseTokenFiat)[0]];  
+  let baseFiat = market.baseTokenFiat ? market.baseTokenFiat[Object.keys(market.baseTokenFiat)[0]]:"-";  
   extra.baseFiat = (baseFiat !== "-") ? Number(baseFiat) : 0;
   let quoteFiat = market.quoteTokenFiat[Object.keys(market.quoteTokenFiat)[0]];
   extra.quoteFiat = (quoteFiat !== "-") ? Number(quoteFiat) : 0;
