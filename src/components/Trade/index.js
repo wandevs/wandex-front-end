@@ -279,9 +279,10 @@ class Trade extends React.PureComponent {
 
   normalizeAmount(amount, ) {
     const { currentMarket, orderType, side } = this.props;
-    let amountDecimals = currentMarket.priceDecimals;
+    let amountDecimals = currentMarket.amountDecimals;
+
     if (orderType === "market" && side === "buy") {
-      amountDecimals = currentMarket.priceDecimals; 
+      amountDecimals = currentMarket.amountDecimals;
     } 
     return truncateDecimals(amount, amountDecimals);
   }  
