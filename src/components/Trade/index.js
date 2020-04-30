@@ -194,7 +194,7 @@ class Trade extends React.PureComponent {
                       autoComplete="off"
                       component={this.renderDisableField}
                       label={currentMarket.baseToken + " " + dexTranslations.AmountEstimate}
-                      placeholder={Number(0).toFixed(currentMarket.priceDecimals)}
+                      placeholder={Number(0).toFixed(currentMarket.amountDecimals)}
                       type="text"
                       min="0"
                     />):(
