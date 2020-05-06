@@ -262,7 +262,7 @@ class Trade extends React.PureComponent {
                   </div>
                 </div>
               </div>
-              <button type="submit" className={`btn trade-button`}>
+              <button type="submit" className={side === 'buy'?`btn trade-button`:`btn trade-button-sell`}>
                 {btnName} {currentMarket.baseToken}
               </button>
             </form>
