@@ -20,12 +20,29 @@ export const loadWalletTranslations = (name) => {
   }
 };
 
+function getQueryVariable(variable){
+  let query = window.location.search.substring(1);
+  let vars = query.split("&");
+  for (let i=0;i<vars.length;i++) {
+    let pair = vars[i].split("=");
+    if(pair[0] === variable){return pair[1];}
+  }
+  return(false);
+}
+
 export const loadLanguage = (dispatch) => {
-  const dexLanguage = window.localStorage.getItem("dexLanguage");
-  if (dexLanguage) {
-    setDexTranslations(dexLanguage, dispatch);
+  const urlConfigLang = getQueryVariable('lang');
+  if (!urlConfigLang) {
+    const dexLanguage = window.localStorage.getItem("dexLanguage");
+    if (dexLanguage) {
+      setDexTranslations(dexLanguage, dispatch);
+    } else {
+      setDexTranslations("English", dispatch);
+    }
   } else {
-    setDexTranslations("English", dispatch);
+    if (urlConfigLang === "zh") {
+      setDexTranslations("Chinese", dispatch);
+    }
   }
 };
 
