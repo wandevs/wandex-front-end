@@ -42,6 +42,8 @@ export const loadLanguage = (dispatch) => {
   } else {
     if (urlConfigLang === "zh") {
       setDexTranslations("Chinese", dispatch);
+    } else {
+      setDexTranslations("English", dispatch);
     }
   }
 };
