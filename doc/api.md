@@ -2,11 +2,20 @@
 
 [API文档中文版](https://github.com/wandevs/dex-front-end/blob/master/doc/api_zh.md)
 
+We provide two ways to call our api : **https** and **websocket**
+
+**HTTP API Server:**
+
 mainnet API server: https://wandex.org/api
 
 testnet API server: https://demodex.wandev.org:43001
 
-We provide two ways to call our api : **https** and **ws**
+**WebSocket API Server:**
+
+mainnet API server: https://wandex.org/ws
+
+testnet API server: https://demodex.wandev.org:43002
+
 ## https
 | num | action | URL | description |
 | :------------ | :------------ | :------------ | :------------ |
@@ -515,3 +524,36 @@ If success returns:
 | 4  | lockedBalanceChange  |  when locked balance been changed |
 | 5  | tradeChange  | trade status changed |
 |  6 | newMarketTrade  | new market trade changed  |
+|  7 | candle  | real-time K line  |
+
+Usage:
+
+Such as:
+
+Send the following message to complete the real-time k-chart registration:
+
+```
+{
+    "type": "subscribe",
+    "channels": ["Candle#WBTC-WUSDT#1d"]
+}
+```
+Parameter content is: Candle# trading on # resolution
+
+The resolution currently only supports: 5m, 1h and 1d options
+
+When a new transaction is completed, the latest k-chart results will be pushed in real time:
+
+```
+{
+  "type": "candle",
+  "bar": {
+    "time": 1588982400,
+    "open": "7733.37",
+    "close": "9651.37",
+    "low": "7733.37",
+    "high": "9667.67",
+    "volume": "22.4537"
+  }
+}
+```
