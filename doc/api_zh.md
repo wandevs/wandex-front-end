@@ -47,7 +47,11 @@ Hydro-Authentication： "地址" + "#HYDRO-AUTHENTICATION"+ "@" + "时间" + "#"
 "Hydro-Authentication":"0xdb9ff5992f81bedd5a0baf462566fe72f3e95a62#HYDRO-AUTHENTICATION#0x5c7071627ac79b7e224791029c0ea3545cfb7be77479416e37144deb9572d58b1d47eae55b146b5908d395a14233cb36e01eceec767f4f2e31c941f5836b59801c"
 ```
 1. /markets，http GET方法，直接访问即可
+
+（此接口已弃用，请使用/operatormarkets/:operatorID 接口，用法与此接口一致）
+
 比如：访问 [https://demodex.wandevs.org:43001/markets](https://demodex.wandevs.org:43001/markets)
+
 返回：
 ```
 {
