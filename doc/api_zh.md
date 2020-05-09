@@ -5,7 +5,7 @@
 
 测试网 API server: https://demodex.wandev.org:43001
 
-我们提供了 api和ws两种方式调用api
+我们提供了 https和ws两种方式调用api
 
 
 ## https
