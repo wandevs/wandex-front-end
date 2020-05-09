@@ -1,7 +1,12 @@
 # wandex api 文档
 [English Version](https://github.com/wandevs/dex-front-end/blob/master/doc/api.md)
 
+主网 API server: https://wandex.org/api
+
+测试网 API server: https://demodex.wandev.org:43001
+
 我们提供了 api和ws两种方式调用api
+
 
 ## https
 | 序号 | 动作 | URL | 说明 | 
