@@ -520,3 +520,37 @@ PerPage:页的大小(默认20)
 | 4  | lockedBalanceChange  |  锁定金额变化 |
 | 5  | tradeChange  | 交易变化  |
 |  6 | newMarketTrade  | 新的市场交易  |
+|  7 | candle  | 实时k线图  |
+
+用法：
+
+例如：
+
+发送下面消息完成实时k线图注册：
+```
+{
+    "type": "subscribe",
+    "channels": ["Candle#WBTC-WUSDT#1d"]
+}
+```
+参数内容为：Candle#交易对#分辨率
+
+其中分辨率目前仅支持：5m, 1h, 1d 三种可选项
+
+当有新交易完成时，会实时推送最新的k线图结果：
+```
+{
+  "type": "candle",
+  "bar": {
+    "time": 1588982400,
+    "open": "7733.37",
+    "close": "9651.37",
+    "low": "7733.37",
+    "high": "9667.67",
+    "volume": "22.4537"
+  }
+}
+```
+
+
+
