@@ -10,11 +10,13 @@ export const toUnitAmount = (amount, decimals) => {
 export const isTokenApproved = allowance => {
   return allowance.gt(10 ** 30);
 };
-
+const apiKeys = ['55b208aeb1740c3db63421ea086a2b0d3cc983b51621f3d84505ae419ec87525',
+  'c17a411ff6fdf75c6a393f75b970a073e9602a5c5485fbf6b3b2d777ba6b0136',
+  '900326a160de5802bcb91281ed4c6ec0b7fe3f56fc56b8277009f724f52d0c22'];
 export const getFiatPrice = async (tokenNameArray, fiatName = "USD") => {
   let tokenArray = []
 
-  for(let i=0; i<tokenNameArray.length; i++) {
+  for (let i = 0; i < tokenNameArray.length; i++) {
     if (tokenNameArray[i].length > 3 && tokenNameArray[i].startsWith('W')) {
       tokenArray.push(tokenNameArray[i].slice(1));
     } else {
@@ -29,19 +31,19 @@ export const getFiatPrice = async (tokenNameArray, fiatName = "USD") => {
       params: {
         fsyms: tokenArray.join(),
         tsyms: fiatName,
-        api_key: '55b208aeb1740c3db63421ea086a2b0d3cc983b51621f3d84505ae419ec87525',
+        api_key: apiKeys[Date.now()%3],
       }
     })
     return ret;
   } catch (error) {
     console.log('Get fiat price timeout:', error.message);
-    return {status: 404};
+    return { status: 404 };
   }
 }
 
 export const truncateDecimals = (input, decimals) => {
-  if(!input) {return ""}
-  
+  if (!input) { return "" }
+
   let result;
   if (decimals === 0) {
     result = input.match(/\d+/);
@@ -49,13 +51,13 @@ export const truncateDecimals = (input, decimals) => {
     let rule = "^(\\d+)(.\\d{1," + decimals + "})?";
     result = input.match(new RegExp(rule));
   }
-  return result? result[0] : "";
+  return result ? result[0] : "";
 }
 
 export const formatMarket = (market) => {
-  let extra = {isExternalPrice: false};
+  let extra = { isExternalPrice: false };
   // fiat
-  let baseFiat = market.baseTokenFiat ? market.baseTokenFiat[Object.keys(market.baseTokenFiat)[0]]:"-";  
+  let baseFiat = market.baseTokenFiat ? market.baseTokenFiat[Object.keys(market.baseTokenFiat)[0]] : "-";
   extra.baseFiat = (baseFiat !== "-") ? Number(baseFiat) : 0;
   let quoteFiat = market.quoteTokenFiat[Object.keys(market.quoteTokenFiat)[0]];
   extra.quoteFiat = (quoteFiat !== "-") ? Number(quoteFiat) : 0;
@@ -63,7 +65,7 @@ export const formatMarket = (market) => {
   if (market.lastPrice !== "0") {
     extra.price = Number(market.lastPrice);
   } else if (baseFiat && quoteFiat) {
-    extra.price = Number(baseFiat/quoteFiat).toFixed(market.priceDecimals);
+    extra.price = Number(baseFiat / quoteFiat).toFixed(market.priceDecimals);
     extra.isExternalPrice = true;
   } else {
     extra.price = 0;
