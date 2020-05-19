@@ -12,9 +12,9 @@ testnet API server: https://demodex.wandev.org:43001
 
 **WebSocket API Server:**
 
-mainnet API server: wss://wandex.org/ws
+mainnet WebSocket server: wss://wandex.org/ws
 
-testnet API server: wss://demodex.wandev.org:43002
+testnet WebSocket server: wss://demodex.wandev.org:43002
 
 ## https
 | num | action | URL | description |
