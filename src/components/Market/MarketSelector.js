@@ -10,7 +10,7 @@ function formatPrice(value, market) {
     let text = value;
     if (market.extra.isExternalPrice) {
       text += "*";
-      return <span title="price is from coinmarketcap.com">{text}</span>
+      return <span title="price is from cryptocompare.com">{text}</span>
     } else {
       return text;
     }
