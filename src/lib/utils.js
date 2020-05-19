@@ -59,7 +59,7 @@ export const formatMarket = (market) => {
   // fiat
   let baseFiat = market.baseTokenFiat ? market.baseTokenFiat[Object.keys(market.baseTokenFiat)[0]] : "-";
   extra.baseFiat = (baseFiat !== "-") ? Number(baseFiat) : 0;
-  let quoteFiat = market.quoteTokenFiat[Object.keys(market.quoteTokenFiat)[0]];
+  let quoteFiat = market.quoteTokenFiat? market.quoteTokenFiat[Object.keys(market.quoteTokenFiat)[0]] : "-";
   extra.quoteFiat = (quoteFiat !== "-") ? Number(quoteFiat) : 0;
   // price, external price as the second choice
   if (market.lastPrice !== "0") {
@@ -83,9 +83,12 @@ export const formatMarket = (market) => {
 
 export const getFiatCode = (markets) => {
   for (let i = 0; i < markets.size; i++) {
-    let unit = Object.keys(markets.get(i).fiat)[0];
-    if (unit !== "0") {
-      return unit;
+    let fiat = markets.get(i).fiat;
+    if (fiat) {
+      let unit = Object.keys(fiat)[0];
+      if (unit !== "0") {
+        return unit;
+      }
     }
   }
   return "";
