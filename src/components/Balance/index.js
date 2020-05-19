@@ -83,7 +83,7 @@ class Balance extends React.PureComponent {
   getFiatFromMarkets(markets) {
     for(let i=0; i<markets.length; i++) {
       if(!this.fiats[markets[i].baseToken]) {
-        this.fiats[markets[i].baseToken] = markets[i].baseTokenFiat['USD'] || 0;
+        this.fiats[markets[i].baseToken] = markets[i].baseTokenFiat ? (markets[i].baseTokenFiat['USD'] || 0): 0;
       }
     }
   }
