@@ -11,9 +11,9 @@ HTTP服务地址：
 
 WebSocket服务地址:
 
-主网 API server: https://wandex.org/ws
+主网 API server: wss://wandex.org/ws
 
-测试网 API server: https://demodex.wandev.org:43002
+测试网 API server: wss://demodex.wandev.org:43002
 
 ## https
 | 序号 | 动作 | URL | 说明 | 
