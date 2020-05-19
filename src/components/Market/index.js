@@ -4,7 +4,7 @@ import { updateCurrentMarket } from '../../actions/markets';
 import QuoteFilter from './QuoteFilter';
 import MarketSelector from './MarketSelector';
 import style from './styles.scss';
-import { getFiatCode } from '../../lib/utils';
+import { formatMarket, getFiatCode } from '../../lib/utils';
 
 const ALL_QUOTE_TOKENS = [
   {value: '', name: 'ALL'},
@@ -21,43 +21,10 @@ const STABLE_TOKEN = [
   'WUSDT'
 ]
 
-function formatMarket(market) {
-  // market price, external price as the second choice
-  market.extra = {};
-  let price = 0, isExternalPrice = false;
-  let baseFiat = market.baseTokenFiat[Object.keys(market.baseTokenFiat)[0]];
-  market.extra.baseFiat = (baseFiat !== "-")? Number(baseFiat) : 0;
-  let quoteFiat = market.quoteTokenFiat[Object.keys(market.quoteTokenFiat)[0]];
-  market.extra.quoteFiat = (quoteFiat !== "-")? Number(quoteFiat) : 0;  
-  if (quoteFiat !== "-") {
-    market.extra.volume24h = quoteFiat * Number(market.quoteTokenVolume24h);
-    if (baseFiat !== "-") {
-      isExternalPrice = Number(baseFiat/quoteFiat).toFixed(market.priceDecimals);
-    }
-  }
-
-  if (market.lastPrice !== "0") {
-    price = Number(market.lastPrice);
-  } else {
-    let baseFiat = market.baseTokenFiat[Object.keys(market.baseTokenFiat)[0]];
-    if ((baseFiat !== "-") && (quoteFiat !== "-")) {
-      price = Number(baseFiat/quoteFiat).toFixed(market.priceDecimals);
-      isExternalPrice = true;
-    }
-  }
-  market.extra.price = price;
-  market.extra.isExternalPrice = isExternalPrice;
-  // volume
-  if (quoteFiat !== "-") {
-    market.extra.volume24h = quoteFiat * Number(market.quoteTokenVolume24h);
-  }
-  return market;
-}
-
 const mapStateToProps = state => {
   return {
     currentMarket: state.market.getIn(['markets', 'currentMarket']),
-    markets: state.market.getIn(['markets', 'data']).map(market => formatMarket(market)),
+    markets: state.market.getIn(['markets', 'data']).map(formatMarket),
     dexTranslations: state.language.get("dexTranslations")
   };
 };
