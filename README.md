@@ -58,7 +58,11 @@ REACT_APP_HYDRO_PROXY_ADDRESS=0xff6d4cca7509573faa92013496399b82760cf269
 REACT_APP_HYDRO_TOKEN_ADDRESS=0x6e575fade0b6d003ed165dd367b88696d29e2ba1
 REACT_APP_WWAN_TOKEN_ADDRESS=0xdabd997ae5e4799be47d6e69d9431615cba28f48
 REACT_APP_NETWORK_ID=1
-REACT_APP_OPERATOR_ID=6
+REACT_APP_OPERATOR_ID=1
 ```
 
 The REACT_APP_OPERATOR_ID is the operator's id. 
+
+# Smart Contract Source Code
+
+[https://github.com/wandevs/wandex-smart-contract/tree/1.1](https://github.com/wandevs/wandex-smart-contract/tree/1.1)
