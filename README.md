@@ -67,3 +67,18 @@ The REACT_APP_OPERATOR_ID is the operator's id.
 # Smart Contract Source Code
 
 [https://github.com/wandevs/wandex-smart-contract/tree/1.1](https://github.com/wandevs/wandex-smart-contract/tree/1.1)
+
+## Smart Contract Deployed
+
+***MAINNET***
+
+["Proxy","0xff6d4cca7509573faa92013496399b82760cf269"]
+["WwanToken","0xdabd997ae5e4799be47d6e69d9431615cba28f48"]
+["HybridExchange","0xf0ff1d294e8ce926000ff2cb0a171ca434a5af16"]
+
+***TESTNET***
+
+Proxy: 0x9e57b9f1d836ff1701e441a619cbaad7fc8863d3
+HybridExchange: 0x8786038ef9c2f659772c6c2ee8402bdfdc511bb8
+WWAN:0x916283cc60fdaf05069796466af164876e35d21f
+
