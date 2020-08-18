@@ -109,7 +109,7 @@ class OrderBook extends React.Component {
         <div className="subTitle">{dexTranslations.AveragePrice}</div>
         <div className="subAmount">{(totalPrice/totalAmount).toFixed(currentMarket.priceDecimals)}</div>
         <div className="subTitle">{dexTranslations.Sum} {currentMarket.baseToken}: </div>
-        <div className="subAmount">{totalAmount.toFixed(currentMarket.priceDecimals)}</div>
+        <div className="subAmount">{totalAmount.toFixed(currentMarket.amountDecimals)}</div>
         <div className="subTitle">{dexTranslations.Sum} {currentMarket.quoteToken}: </div>
         <div className="subAmount">{totalPrice.toFixed(currentMarket.priceDecimals)}</div>
       </div>
