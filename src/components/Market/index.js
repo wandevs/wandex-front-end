@@ -9,16 +9,16 @@ import { formatMarket, getFiatCode } from '../../lib/utils';
 const ALL_QUOTE_TOKENS = [
   {value: '', name: 'ALL'},
   {value: 'WWAN', name: 'WWAN'},
-  {value: 'WETH', name: 'WETH'},
-  {value: 'WBTC', name: 'WBTC'},
+  {value: 'wanETH', name: 'wanETH'},
+  {value: 'wanBTC', name: 'wanBTC'},
   {value: '$', name: 'Stable Coins'}
 ];
 
 const STABLE_TOKEN = [
-  'WUSDC', // TODO, ignore others
-  'WGUSD',
-  'WTUSD',
-  'WUSDT'
+  'wanUSDC', // TODO, ignore others
+  'wanGUSD',
+  'wanTUSD',
+  'wanUSDT'
 ]
 
 const mapStateToProps = state => {

@@ -17,8 +17,8 @@ export const getFiatPrice = async (tokenNameArray, fiatName = "USD") => {
   let tokenArray = []
 
   for (let i = 0; i < tokenNameArray.length; i++) {
-    if (tokenNameArray[i].length > 3 && tokenNameArray[i].startsWith('W')) {
-      tokenArray.push(tokenNameArray[i].slice(1));
+    if (tokenNameArray[i].length > 3 && tokenNameArray[i].startsWith('wan')) {
+      tokenArray.push(tokenNameArray[i].slice(3));
     } else {
       tokenArray.push(tokenNameArray[i]);
     }
